@@ -27,7 +27,8 @@ export default {
           900: 'rgb(var(--tw-color-primary-900) / <alpha-value>)',
           950: 'rgb(var(--tw-color-primary-950) / <alpha-value>)',
         },
-
+        'hover-text': '#f76368',
+        text: { primary: '#20365b', secondary: '#9da7b7' },
         dark: '#222222',
       },
       backgroundImage: {
