@@ -4,7 +4,7 @@ import { dataBlog2 } from '@/data/mock-data';
 
 import BigCard from '@/components/common/BigCard';
 import FrameSection from '@/components/common/FrameSection';
-import MultipleCard from '@/components/common/MultipleCard';
+import SmallCard from '@/components/common/SmallCard';
 import TitleSection from '@/components/common/TitleSection';
 
 const Editor = () => {
@@ -15,7 +15,11 @@ const Editor = () => {
         {dataBlog2.slice(0, 1).map((item) => (
           <BigCard subType='none' key={item.thumbnail} item={item} />
         ))}
-        <MultipleCard />
+        <div className='grid grid-rows-4 gap-4'>
+          {dataBlog2.slice(0, 4).map((item) => (
+            <SmallCard key={item.thumbnail} item={item} />
+          ))}
+        </div>
       </FrameSection>
     </div>
   );

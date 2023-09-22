@@ -19,7 +19,7 @@ const BigCard: FC<BigCardProps> = (props) => {
   return (
     <div className='flex flex-col gap-4'>
       <div className='relative mb-6'>
-        <div className='overflow-hidden rounded-lg'>
+        <div className='cursor-pointer overflow-hidden rounded-lg'>
           <NextImage
             src={props.item?.thumbnail}
             height={1000}

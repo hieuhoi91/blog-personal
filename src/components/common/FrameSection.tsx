@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 interface FrameSectionProps {
-  className: string;
+  className?: string;
   children: React.ReactNode;
 }
 

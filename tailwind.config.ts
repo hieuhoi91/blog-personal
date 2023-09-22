@@ -29,12 +29,15 @@ export default {
         },
         'hover-text': '#f76368',
         text: { primary: '#20365b', secondary: '#9da7b7' },
+
         dark: '#222222',
       },
       backgroundImage: {
         primary: 'linear-gradient(135deg, #f73a46 0%, #ed0264 100%);',
         main: 'linear-gradient(to top left, #fb7185, #d946ef, #6366f1);',
+        border: 'linear-gradient(to left,#ebebeb 0%,transparent 100%)',
       },
+
       keyframes: {
         flicker: {
           '0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100%': {
