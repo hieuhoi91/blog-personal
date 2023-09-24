@@ -2,6 +2,7 @@
 
 import React from 'react';
 
+import Widget from '@/components/layout/widget';
 import NextImage from '@/components/NextImage';
 
 import Editor from '@/view/Home/EditorPick';
@@ -12,13 +13,11 @@ import Trending from '@/view/Home/Trending';
 
 const Home = () => {
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col gap-[50px]'>
       <Outstanding />
-      <div className='h-[50px]'></div>
-      <div className='mt-[10px] grid grid-cols-3'>
-        <div className='col-span-2'>
+      <div className='mt-[10px] grid grid-cols-3 gap-6'>
+        <div className='col-span-2 flex flex-col gap-[50px]'>
           <Editor />
-          <div className='h-[50px]'></div>
           <NextImage
             height={126}
             width={1000}
@@ -26,15 +25,13 @@ const Home = () => {
             src='https://themeger.shop/wordpress/katen/wp-content/uploads/2022/08/ad-750.png'
             className='w-full '
           />
-          <div className='h-[50px]'></div>
           <Trending />
-          <div className='h-[50px]'></div>
           <Inspiration />
-          <div className='h-[50px]'></div>
           <LatestPosts />
-          <div className='h-[50px]'></div>
         </div>
-        <div className='col-span-1'></div>
+        <div className='col-span-1'>
+          <Widget />
+        </div>
       </div>
     </div>
   );

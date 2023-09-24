@@ -19,7 +19,7 @@ const images: string[] = [
 
 const Footer = () => {
   return (
-    <div className='flex flex-col gap-8'>
+    <div className='mt-8 flex flex-col gap-8'>
       <div className='relative grid grid-cols-6 gap-2'>
         {images.map((item) => (
           <Link key={item} href='/'>

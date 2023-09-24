@@ -19,7 +19,7 @@ const Inspiration = () => {
 
   return (
     <div className='flex flex-col gap-4'>
-      <div className='flex h-full w-full items-center justify-between'>
+      <div className='flex w-full items-center justify-between'>
         <TitleSection title='Inspiration' />
         <div className='flex gap-2'>
           <Button
@@ -47,22 +47,22 @@ const Inspiration = () => {
         loop={true}
       >
         <SwiperSlide>
-          <SpecialCard type={false} />
+          <SpecialCard />
         </SwiperSlide>
         <SwiperSlide>
-          <SpecialCard type={false} />
+          <SpecialCard />
         </SwiperSlide>
         <SwiperSlide>
-          <SpecialCard type={false} />
+          <SpecialCard />
         </SwiperSlide>
         <SwiperSlide>
-          <SpecialCard type={false} />
+          <SpecialCard />
         </SwiperSlide>
         <SwiperSlide>
-          <SpecialCard type={false} />
+          <SpecialCard />
         </SwiperSlide>
         <SwiperSlide>
-          <SpecialCard type={false} />
+          <SpecialCard />
         </SwiperSlide>
       </Swiper>
     </div>

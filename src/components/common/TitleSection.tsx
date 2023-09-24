@@ -4,11 +4,16 @@ import NextImage from '@/components/NextImage';
 
 interface TitleProps {
   title: string;
+  widget?: boolean;
 }
 
 const TitleSection: FC<TitleProps> = (props) => {
   return (
-    <div className='flex flex-col gap-4'>
+    <div
+      className={`${
+        props.widget ? 'items-center justify-end' : 'items-start justify-start'
+      } text-text-primary flex flex-col gap-4`}
+    >
       <h3 className='font-bold'>{props.title}</h3>
       <NextImage
         width={33}

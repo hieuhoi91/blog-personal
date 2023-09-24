@@ -5,9 +5,6 @@ import '@/styles/globals.css';
 // !STARTERCONF This is for demo purposes, remove @/styles/colors.css import immediately
 import '@/styles/colors.css';
 
-import Footer from '@/components/layout/Footer';
-import Header from '@/components/layout/Header';
-
 import { siteConfig } from '@/constant/config';
 
 import { Providers } from './providers';
@@ -61,15 +58,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body suppressHydrationWarning={true}>
-        <Providers>
-          <Header />
-          <div className='flex w-full flex-col items-center justify-center'>
-            <div className='w-full max-w-[1200px]'>
-              {children}
-              <Footer />
-            </div>
-          </div>
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

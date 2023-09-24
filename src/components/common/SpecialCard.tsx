@@ -3,12 +3,12 @@ import { FC } from 'react';
 
 import NextImage from '@/components/NextImage';
 interface SpecialCardProps {
-  type: boolean;
+  type?: boolean;
 }
 
 const SpecialCard: FC<SpecialCardProps> = (props) => {
   return (
-    <div className='group relative col-span-2 overflow-hidden rounded-lg'>
+    <div className='group relative z-10 col-span-2 overflow-hidden rounded-lg shadow-xl'>
       <NextImage
         width={1000}
         height={1000}
@@ -19,7 +19,7 @@ const SpecialCard: FC<SpecialCardProps> = (props) => {
       <div
         className={`${
           props.type ? 'bottom-12 left-12' : 'bottom-6 left-6 '
-        } absolute z-10 flex flex-col items-start gap-4`}
+        } absolute z-20 flex flex-col items-start gap-4`}
       >
         <Chip className='bg-main text-white'>Inspiration</Chip>
         <h2 className={`${props.type ? 'text-4xl' : 'text-2xl'} text-white`}>
@@ -27,6 +27,7 @@ const SpecialCard: FC<SpecialCardProps> = (props) => {
         </h2>
         <span className='text-zinc-300'>Katen Doe • August 20, 2022</span>
       </div>
+      <div className='absolute left-0 top-0 z-10 h-full w-full bg-[#203656] opacity-60'></div>
     </div>
   );
 };

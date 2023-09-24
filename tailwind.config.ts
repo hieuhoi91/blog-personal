@@ -11,6 +11,7 @@ export default {
     extend: {
       fontFamily: {
         primary: ['Inter', ...defaultTheme.fontFamily.sans],
+        dancing: 'font-family: "Dancing Script", cursive',
       },
       colors: {
         primary: {
@@ -36,6 +37,8 @@ export default {
         primary: 'linear-gradient(135deg, #f73a46 0%, #ed0264 100%);',
         main: 'linear-gradient(to top left, #fb7185, #d946ef, #6366f1);',
         border: 'linear-gradient(to left,#ebebeb 0%,transparent 100%)',
+        'border-reverse':
+          'linear-gradient(to right,#ebebeb 0%,transparent 100%)',
       },
 
       keyframes: {

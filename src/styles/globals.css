@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
+
 :root {
   /* #region  /**=========== Primary Color =========== */
   /* !STARTERCONF Customize these variable, copy and paste from /styles/colors.css for list of colors */
@@ -31,7 +33,7 @@
 @layer base {
   /* inter var - latin */
   @font-face {
-    font-family: 'Inter';
+    font-family: 'Dancing Script', cursive;
     font-style: normal;
     font-weight: 100 900;
     font-display: optional;

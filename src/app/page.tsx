@@ -4,6 +4,8 @@
 import Head from 'next/head';
 import * as React from 'react';
 
+import Layout from '@/components/layout';
+
 import { Home } from '@/view';
 
 // const NoSSRLightDark = dynamic(() => import('@/components/common/LightDark'), {
@@ -29,7 +31,9 @@ export default function HomePage() {
         <title>Hi</title>
       </Head>
       <section>
-        <Home />
+        <Layout>
+          <Home />
+        </Layout>
       </section>
     </main>
   );

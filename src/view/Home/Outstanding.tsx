@@ -22,8 +22,7 @@ const Outstanding = () => {
           </Button>
           <Button
             radius='full'
-            variant='bordered'
-            className='h-[44px] grid-cols-1'
+            className='h-[44px] grid-cols-1 border bg-transparent'
           >
             Recent
           </Button>
