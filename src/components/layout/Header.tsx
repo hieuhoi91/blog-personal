@@ -61,6 +61,14 @@ export const social: Social[] = [
   },
 ];
 
+export const menu = [
+  { name: 'Home', href: '/' },
+  { name: 'Lifestyle', href: '/lifestyle' },
+  { name: 'Culture', href: '/culture' },
+  { name: 'Features', href: '/features' },
+  { name: 'Shop', href: '/shop' },
+];
+
 const Header = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const { theme, setTheme } = useTheme();
@@ -68,52 +76,41 @@ const Header = () => {
   return (
     <Navbar
       shouldHideOnScroll
-      className='flex h-[90px] justify-center border-b'
+      className='flex h-[90px] justify-center border-b dark:border-[#343f4c]'
     >
-      <NavbarBrand>
+      <NavbarBrand className='!grow-0'>
         <NextImage
           width={118}
           height={28}
-          src='https://themeger.shop/wordpress/katen/wp-content/uploads/2022/08/logo.svg'
+          src={
+            theme === 'dark'
+              ? 'https://themeger.shop/wordpress/katen/wp-content/uploads/2022/08/logo-light.svg'
+              : 'https://themeger.shop/wordpress/katen/wp-content/uploads/2022/08/logo.svg'
+          }
           alt='logo'
         />
       </NavbarBrand>
-      <NavbarContent className='hidden gap-4 sm:flex' justify='center'>
-        <NavbarItem isActive>
-          <Link color='foreground' href='/'>
-            Home
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link href='/lifestyle' aria-current='page'>
-            Lifestyle
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color='foreground' href='/culture'>
-            Culture
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color='foreground' href='/features'>
-            Features
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color='foreground' href='/shop'>
-            Shop
-          </Link>
-        </NavbarItem>
-      </NavbarContent>
-      <NavbarContent>
-        {social.map((item) => (
-          <Link key={item.href} href={item.href}>
-            <span className='hover:text-secondary'>{item.icon}</span>
-          </Link>
+      <NavbarContent
+        className='hidden grow gap-8 text-[14px] sm:flex'
+        justify='center'
+      >
+        {menu.map((item) => (
+          <NavbarItem key={item.name}>
+            <Link color='foreground' href={item.href} className='text-[14px]'>
+              {item.name}
+            </Link>
+          </NavbarItem>
         ))}
       </NavbarContent>
       <NavbarContent className='flex !justify-end'>
-        <div className='shadow-a flex gap-4 rounded-full border p-2'>
+        <div className='mr-12 flex items-center gap-4'>
+          {social.map((item) => (
+            <Link key={item.href} href={item.href}>
+              <span className='hover:text-secondary'>{item.icon}</span>
+            </Link>
+          ))}
+        </div>
+        <div className='shadow-a flex gap-4 rounded-full border p-2 dark:border-[#343f4c]'>
           <button onClick={() => setTheme('light')}>
             <MdLightMode />
           </button>

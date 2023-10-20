@@ -22,10 +22,16 @@ const SpecialCard: FC<SpecialCardProps> = (props) => {
         } absolute z-20 flex flex-col items-start gap-4`}
       >
         <Chip className='bg-main text-white'>Inspiration</Chip>
-        <h2 className={`${props.type ? 'text-4xl' : 'text-2xl'} text-white`}>
+        <h2
+          className={`${
+            props.type ? 'text-[32px]' : 'text-2xl'
+          } pr-6 text-white`}
+        >
           5 Easy Ways You Can Turn Future Into Success
         </h2>
-        <span className='text-zinc-300'>Katen Doe • August 20, 2022</span>
+        <span className='text-sm text-zinc-300'>
+          Katen Doe • August 20, 2022
+        </span>
       </div>
       <div className='absolute left-0 top-0 z-10 h-full w-full bg-[#203656] opacity-60'></div>
     </div>

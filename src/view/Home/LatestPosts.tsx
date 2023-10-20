@@ -42,8 +42,10 @@ const LatestPosts = () => {
               </div>
             </div>
             <div className='col-span-3 flex flex-col gap-2'>
-              <Info />
-              <h4 className='text-text-primary '>{item.title}</h4>
+              <Info avatar={true} />
+              <h4 className='text-text-primary hover:text-hover-text dark:hover:text-hover-text cursor-pointer transition-all dark:text-white'>
+                {item.title}
+              </h4>
               <p className='text-text-secondary'>
                 The European languages are members of the same family. Their
                 separate existence is a myth.…

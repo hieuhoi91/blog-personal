@@ -18,7 +18,7 @@ interface BigCardProps {
 const BigCard: FC<BigCardProps> = (props) => {
   return (
     <div className='flex flex-col gap-4'>
-      <div className='relative mb-6'>
+      <div className='relative mb-2'>
         <div className='cursor-pointer overflow-hidden rounded-lg'>
           <NextImage
             src={props.item?.thumbnail}
@@ -48,8 +48,8 @@ const BigCard: FC<BigCardProps> = (props) => {
           </Button>
         )}
       </div>
-      <Info />
-      <h3 className='text-text-primary hover:text-hover-text'>
+      <Info avatar={true} />
+      <h3 className='text-text-primary hover:text-hover-text dark:text-white'>
         3 Easy Ways To Make Your iPhone Faster
       </h3>
       <p className='text-text-secondary'>

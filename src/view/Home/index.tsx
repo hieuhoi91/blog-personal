@@ -28,6 +28,11 @@ const Home = () => {
           <Trending />
           <Inspiration />
           <LatestPosts />
+          {/* <div>
+            {data.map((item: any, index: any) => (
+              <div key={index}>{item}</div>
+            ))}
+          </div> */}
         </div>
         <div className='col-span-1'>
           <Widget />

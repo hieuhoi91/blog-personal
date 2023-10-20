@@ -24,10 +24,12 @@ const SmallCard: FC<SmallCardProps> = (props) => {
         />
       </div>
       <div className='flex w-full flex-col gap-2'>
-        <h5 className='text-text-primary hover:text-hover-text cursor-pointer font-bold'>
+        <h5 className='text-text-primary hover:text-hover-text cursor-pointer font-bold dark:text-white'>
           {props.item.title}
         </h5>
-        <span className='text-text-secondary'>{props.item.day}</span>
+        <span className='text-text-secondary text-[14px]'>
+          {props.item.day}
+        </span>
       </div>
     </div>
   );

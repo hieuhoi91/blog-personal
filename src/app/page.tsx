@@ -30,11 +30,9 @@ export default function HomePage() {
       <Head>
         <title>Hi</title>
       </Head>
-      <section>
-        <Layout>
-          <Home />
-        </Layout>
-      </section>
+      <Layout>
+        <Home />
+      </Layout>
     </main>
   );
 }

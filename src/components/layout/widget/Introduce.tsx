@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useTheme } from 'next-themes';
 import React from 'react';
 
 import FrameSection from '@/components/common/FrameSection';
@@ -6,6 +7,7 @@ import { social } from '@/components/layout/Header';
 import NextImage from '@/components/NextImage';
 
 const Introduce = () => {
+  const { theme } = useTheme();
   return (
     <FrameSection className='relative'>
       <NextImage
@@ -19,7 +21,11 @@ const Introduce = () => {
         <NextImage
           width={118}
           height={28}
-          src='https://themeger.shop/wordpress/katen/wp-content/uploads/2022/08/logo.svg'
+          src={
+            theme === 'dark'
+              ? 'https://themeger.shop/wordpress/katen/wp-content/uploads/2022/08/logo-light.svg'
+              : 'https://themeger.shop/wordpress/katen/wp-content/uploads/2022/08/logo.svg'
+          }
           alt='logo'
         />
         <p className='text-text-secondary w-full text-center text-[15px]'>

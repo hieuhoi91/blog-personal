@@ -22,7 +22,7 @@ const Outstanding = () => {
           </Button>
           <Button
             radius='full'
-            className='h-[44px] grid-cols-1 border bg-transparent'
+            className='h-[44px] grid-cols-1 border bg-transparent dark:border-[#343f4c]'
           >
             Recent
           </Button>
@@ -45,11 +45,11 @@ const Outstanding = () => {
               <div className='flex flex-1 flex-col gap-2 '>
                 <Link
                   href=''
-                  className='hover:text-hover-text text-lg font-bold transition-all'
+                  className='hover:text-hover-text text-[15px] font-bold transition-all'
                 >
                   {item.title}
                 </Link>
-                <span>{item.day}</span>
+                <span className='text-[14px]'>{item.day}</span>
               </div>
             </div>
           ))}

@@ -1,3 +1,5 @@
+'use client';
+
 import { Button } from '@nextui-org/react';
 import React, { useEffect, useState } from 'react';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
@@ -26,7 +28,7 @@ const Inspiration = () => {
             onClick={() => swiper.slidePrev()}
             radius='full'
             isIconOnly
-            className='border-text-secondary hover:border-hover-text hover:text-hover-text border bg-white text-xl opacity-40 transition-all hover:opacity-100'
+            className='border-text-secondary hover:border-hover-text hover:text-hover-text border bg-transparent text-xl opacity-40 transition-all hover:opacity-100'
           >
             <MdKeyboardArrowLeft />
           </Button>
@@ -34,7 +36,7 @@ const Inspiration = () => {
             onClick={() => swiper.slideNext()}
             radius='full'
             isIconOnly
-            className='border-text-secondary hover:border-hover-text hover:text-hover-text border bg-white text-xl opacity-40 transition-all hover:opacity-100'
+            className='border-text-secondary hover:border-hover-text hover:text-hover-text border bg-transparent text-xl opacity-40 transition-all hover:opacity-100'
           >
             <MdKeyboardArrowRight />
           </Button>

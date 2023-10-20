@@ -29,7 +29,7 @@ const PopularPost = () => {
             <div className='flex flex-1 flex-col gap-2 '>
               <Link
                 href=''
-                className='hover:text-hover-text text-lg font-bold transition-all'
+                className='hover:text-hover-text text-[15px] font-bold transition-all'
               >
                 {item.title}
               </Link>

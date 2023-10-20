@@ -1,3 +1,5 @@
+'use client';
+
 import { Button, Chip } from '@nextui-org/react';
 import React, { useEffect, useState } from 'react';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
@@ -44,7 +46,7 @@ const Celebration = () => {
             </Chip>
           </div>
           <div className='flex flex-col gap-2'>
-            <h4 className='text-text-primary'>
+            <h4 className='text-text-primary dark:text-white'>
               What Can You Do About Fashion Right Now
             </h4>
             <Info avatar={false} />
@@ -66,7 +68,7 @@ const Celebration = () => {
             </Chip>
           </div>
           <div className='flex flex-col gap-2'>
-            <h4 className='text-text-primary'>
+            <h4 className='text-text-primary dark:text-white'>
               What Can You Do About Fashion Right Now
             </h4>
             <Info avatar={false} />
@@ -88,7 +90,7 @@ const Celebration = () => {
             </Chip>
           </div>
           <div className='flex flex-col gap-2'>
-            <h4 className='text-text-primary'>
+            <h4 className='text-text-primary dark:text-white'>
               What Can You Do About Fashion Right Now
             </h4>
             <Info avatar={false} />
@@ -101,7 +103,7 @@ const Celebration = () => {
             radius='full'
             isIconOnly
             size='sm'
-            className='border-text-secondary hover:border-hover-text hover:text-hover-text border bg-white text-xl opacity-40 transition-all hover:opacity-100'
+            className='border-text-secondary hover:border-hover-text hover:text-hover-text border bg-transparent text-xl opacity-40 transition-all hover:opacity-100'
           >
             <MdKeyboardArrowLeft />
           </Button>
@@ -110,7 +112,7 @@ const Celebration = () => {
             size='sm'
             radius='full'
             isIconOnly
-            className='border-text-secondary hover:border-hover-text hover:text-hover-text border bg-white text-xl opacity-40 transition-all hover:opacity-100'
+            className='border-text-secondary hover:border-hover-text hover:text-hover-text border bg-transparent text-xl opacity-40 transition-all hover:opacity-100'
           >
             <MdKeyboardArrowRight />
           </Button>

@@ -26,7 +26,7 @@ const TagClouds = () => {
           <Button
             radius='full'
             size='sm'
-            className='text-text-secondary border bg-transparent'
+            className='text-text-secondary border bg-transparent dark:border-[#343f4c]'
             key={item}
           >
             #{item}

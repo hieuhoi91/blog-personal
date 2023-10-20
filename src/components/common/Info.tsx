@@ -11,13 +11,13 @@ const Info: FC<InfoProps> = (props) => {
       {props.avatar && (
         <Avatar
           src='https://themeger.shop/wordpress/katen/wp-content/uploads/2022/08/nick-arnot-321267-unsplash-48x48.jpg'
-          size='md'
+          size='sm'
         />
       )}
 
       <div
         className={`${
-          props.avatar === false && 'text-sm'
+          props.avatar === false ? 'text-xs' : 'text-sm'
         } text-text-secondary flex items-center`}
       >
         <span className='hover:text-hover-text cursor-pointer transition-all'>
