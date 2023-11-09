@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: 'Pre-built components with awesome default',
 };
 
-export default function ComponentsLayout({
+export default function BlogsLayout({
   children,
 }: {
   children: React.ReactNode;

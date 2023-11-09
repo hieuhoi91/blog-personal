@@ -105,11 +105,6 @@ export default {
             },
           },
         },
-        light: {
-          colors: {
-            background: '#ffffff',
-          },
-        },
       },
     }),
   ],

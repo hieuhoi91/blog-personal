@@ -37,35 +37,35 @@ interface Social {
 export const social: Social[] = [
   {
     icon: <BiLogoFacebook />,
-    href: '/fb',
+    href: 'https://www.facebook.com/lownsni',
   },
   {
     icon: <BiLogoTwitter />,
-    href: '/tw',
+    href: 'https://twitter.com/?lang=en',
   },
   {
     icon: <BiLogoInstagram />,
-    href: '/ig',
+    href: 'https://www.instagram.com/_lowns.ni/',
   },
   {
     icon: <BiLogoPinterest />,
-    href: '/pt',
+    href: 'https://www.pinterest.com/',
   },
   {
     icon: <BiLogoTiktok />,
-    href: '/tt',
+    href: 'https://www.tiktok.com/@_lowns.ni',
   },
   {
     icon: <BiLogoYoutube />,
-    href: '/ytb',
+    href: 'https://www.youtube.com/',
   },
 ];
 
 export const menu = [
   { name: 'Home', href: '/' },
-  { name: 'Lifestyle', href: '/lifestyle' },
-  { name: 'Culture', href: '/culture' },
-  { name: 'Features', href: '/features' },
+  { name: 'Lifestyle', href: '/blogs' },
+  { name: 'Culture', href: '/blogs/culture' },
+  { name: 'Features', href: '/blogs/features' },
   { name: 'Shop', href: '/shop' },
 ];
 
@@ -79,16 +79,18 @@ const Header = () => {
       className='flex h-[90px] justify-center border-b dark:border-[#343f4c]'
     >
       <NavbarBrand className='!grow-0'>
-        <NextImage
-          width={118}
-          height={28}
-          src={
-            theme === 'dark'
-              ? 'https://themeger.shop/wordpress/katen/wp-content/uploads/2022/08/logo-light.svg'
-              : 'https://themeger.shop/wordpress/katen/wp-content/uploads/2022/08/logo.svg'
-          }
-          alt='logo'
-        />
+        <Link href='/'>
+          <NextImage
+            width={118}
+            height={28}
+            src={
+              theme === 'dark'
+                ? 'https://themeger.shop/wordpress/katen/wp-content/uploads/2022/08/logo-light.svg'
+                : 'https://themeger.shop/wordpress/katen/wp-content/uploads/2022/08/logo.svg'
+            }
+            alt='logo'
+          />
+        </Link>
       </NavbarBrand>
       <NavbarContent
         className='hidden grow gap-8 text-[14px] sm:flex'
