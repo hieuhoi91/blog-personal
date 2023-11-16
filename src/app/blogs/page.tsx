@@ -1,9 +1,7 @@
-import Blogs from '@/view/Blogs';
+import React from 'react';
 
-export default Blogs;
-
-export const getStaticProps = () => {
-  return {
-    props: {},
-  };
+const page = () => {
+  return <div>page</div>;
 };
+
+export default page;

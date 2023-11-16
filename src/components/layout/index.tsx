@@ -4,7 +4,7 @@ import Footer from '@/components/layout/Footer';
 import Header from '@/components/layout/Header';
 
 interface LayoutProps {
-  children: React.ReactElement;
+  children: React.ReactNode;
 }
 
 const Layout = ({ children }: LayoutProps) => {
