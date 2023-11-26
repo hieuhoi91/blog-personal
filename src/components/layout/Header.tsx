@@ -3,7 +3,6 @@
 import {
   Button,
   Input,
-  Link,
   Modal,
   ModalBody,
   ModalContent,
@@ -15,6 +14,7 @@ import {
   NavbarItem,
   useDisclosure,
 } from '@nextui-org/react';
+import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import React from 'react';
 import {
@@ -63,7 +63,7 @@ export const social: Social[] = [
 
 export const menu = [
   { name: 'Home', href: '/' },
-  { name: 'Lifestyle', href: '/blogs' },
+  { name: 'Lifestyle', href: '/blogs/lifestyle' },
   { name: 'Culture', href: '/blogs/culture' },
   { name: 'Features', href: '/blogs/features' },
   { name: 'Shop', href: '/shop' },
