@@ -14,7 +14,7 @@ const TitleSection: FC<TitleProps> = (props) => {
         props.widget ? 'items-center justify-end' : 'items-start justify-start'
       } text-text-primary flex flex-col gap-4 dark:text-white`}
     >
-      <h3 className='font-bold'>{props.title}</h3>
+      <h3 className='text-xl font-bold'>{props.title}</h3>
       <NextImage
         width={33}
         height={4}

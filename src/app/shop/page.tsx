@@ -10,6 +10,11 @@ import {
 import { products } from '@/data/mock-data';
 
 import Product from '@/components/common/Product';
+import Cart from '@/components/layout/widget/Cart';
+import Categories from '@/components/layout/widget/Categories';
+import FilterBy from '@/components/layout/widget/FilterBy';
+import Price from '@/components/layout/widget/Price';
+import Products from '@/components/layout/widget/Products';
 
 const sort = [
   { name: 'Sort by price: low to high', order: 'asc' },
@@ -45,19 +50,20 @@ const Page = () => {
   };
 
   return (
-    <div className='grid grid-cols-4 gap-8'>
+    <div className='mt-16 grid grid-cols-4 gap-8'>
       <div className='col-span-3 flex flex-col'>
         <div className='mb-8 flex items-start justify-between'>
-          <div>
+          <span className='text-text-secondary text-sm font-light'>
             Showing {beginRows + 1} -{' '}
             {endRows > totalRows ? totalRows : endRows} of {totalRows} results
-          </div>
+          </span>
           <div className='flex flex-col gap-2'>
             <div className='mb-6 flex w-full flex-wrap items-end gap-4 md:mb-0 md:flex-nowrap'>
               <Select
                 labelPlacement='inside'
                 defaultSelectedKeys={['Sort by price: low to high']}
                 className='w-[260px]'
+                color='primary'
               >
                 {sort.map((value) => (
                   <SelectItem
@@ -121,7 +127,13 @@ const Page = () => {
           </div>
         </div>
       </div>
-      <div className='col-span-1 bg-orange-600'>2</div>
+      <div className='col-span-1 flex flex-col gap-8'>
+        <Cart />
+        <Price />
+        <FilterBy />
+        <Categories />
+        <Products />
+      </div>
     </div>
   );
 };

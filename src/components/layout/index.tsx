@@ -1,3 +1,6 @@
+'use client';
+
+import { usePathname } from 'next/navigation';
 import React from 'react';
 
 import Footer from '@/components/layout/Footer';
@@ -8,9 +11,27 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
+  const pathname = usePathname();
+
+  const slug = pathname.split('/');
+
+  const name =
+    slug[slug.length - 1].charAt(0).toUpperCase() +
+    slug[slug.length - 1].slice(1);
+
   return (
     <div>
       <Header />
+      {pathname === '/' ? (
+        ''
+      ) : (
+        <div className='flex h-40 w-full flex-col items-center justify-center bg-[#f1f8ff] '>
+          <h2>{name}</h2>
+          <span className='text-text-secondary mt-2 text-sm font-light'>
+            Katen / {name}
+          </span>
+        </div>
+      )}
       <div className='flex w-full flex-col items-center justify-center'>
         <div className='w-full max-w-[1200px]'>
           {children}
