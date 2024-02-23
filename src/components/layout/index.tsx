@@ -25,7 +25,7 @@ const Layout = ({ children }: LayoutProps) => {
       {pathname === '/' ? (
         ''
       ) : (
-        <div className='flex h-40 w-full flex-col items-center justify-center bg-[#f1f8ff] '>
+        <div className='mb-16 flex h-40 w-full flex-col items-center justify-center bg-[#f1f8ff]'>
           <h2>{name}</h2>
           <span className='text-text-secondary mt-2 text-sm font-light'>
             Katen / {name}

@@ -14,7 +14,7 @@ import NextImage from '@/components/NextImage';
 
 const Blogs = () => {
   return (
-    <div className='mt-16 grid grid-cols-3 gap-6'>
+    <div className='grid grid-cols-3 gap-6'>
       <div className='col-span-2 flex flex-col gap-[50px]'>
         <FrameSection className='flex flex-col gap-8'>
           {dataBlog2.slice(0, 4).map((item) => (

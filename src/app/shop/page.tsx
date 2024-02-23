@@ -50,7 +50,7 @@ const Page = () => {
   };
 
   return (
-    <div className='mt-16 grid grid-cols-4 gap-8'>
+    <div className='grid grid-cols-4 gap-8'>
       <div className='col-span-3 flex flex-col'>
         <div className='mb-8 flex items-start justify-between'>
           <span className='text-text-secondary text-sm font-light'>
