@@ -63,7 +63,6 @@ const Page = () => {
                 labelPlacement='inside'
                 defaultSelectedKeys={['Sort by price: low to high']}
                 className='w-[260px]'
-                color='primary'
               >
                 {sort.map((value) => (
                   <SelectItem
