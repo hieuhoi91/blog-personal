@@ -29,8 +29,8 @@ export default {
         dark: '#222222',
       },
       backgroundImage: {
-        primary: 'linear-gradient(135deg, #f73a46 0%, #ed0264 100%);',
-        main: 'linear-gradient(to top left, #fb7185, #d946ef, #6366f1);',
+        primary: 'linear-gradient(135deg, #f73a46 0%, #ed0264 100%)',
+        main: 'linear-gradient(to top left, #fb7185, #d946ef, #6366f1)',
         border: 'linear-gradient(to left,#ebebeb 0%,transparent 100%)',
         'border-reverse':
           'linear-gradient(to right,#ebebeb 0%,transparent 100%)',
@@ -58,7 +58,7 @@ export default {
         },
       },
       boxShadow: {
-        a: 'border-radius: 50px;background: #b3b2b2;box-shadow: inset 14px 14px 28px #868686,inset -14px -14px 28px #e0dfdf;',
+        a: 'border-radius: 50px, background: #b3b2b2, box-shadow: inset 14px 14px 28px #868686, inset -14px -14px 28px #e0dfdf',
       },
       animation: {
         flicker: 'flicker 3s linear infinite',
