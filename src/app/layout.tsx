@@ -6,7 +6,8 @@ import '@/styles/colors.css';
 
 import Layout from '@/components/layout';
 
-import { Providers } from './providers';
+import NextUIProviders from '@/app/providers/nextuiProviders';
+import NextAuthSessionProvider from '@/app/providers/sessionProvider';
 
 const poppins = Poppins({
   weight: ['200', '300', '400', '500', '600', '700', '800', '900'],
@@ -22,9 +23,11 @@ export default function RootLayout({
   return (
     <html lang='en' className={poppins.className}>
       <body suppressHydrationWarning={true}>
-        <Providers>
-          <Layout>{children}</Layout>
-        </Providers>
+        <NextAuthSessionProvider>
+          <NextUIProviders>
+            <Layout>{children}</Layout>
+          </NextUIProviders>
+        </NextAuthSessionProvider>
       </body>
     </html>
   );
