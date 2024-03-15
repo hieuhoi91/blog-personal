@@ -37,13 +37,6 @@ export interface ResRegister {
   username: string;
   email: string;
   password: string;
-  phone: string;
-  avatar: null;
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  role: string;
-  isActive: boolean;
 }
 
 export interface ISession {

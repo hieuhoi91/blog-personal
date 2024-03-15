@@ -3,7 +3,8 @@ import { ReqLogin, ReqRegister, ResLogin, ResRegister } from '@/shared/type';
 
 export const BlogApi = {
   login: async (req: ReqLogin) => {
-    return await axiosClient.post<ResLogin>('/auth/login', req);
+    const res = await axiosClient.post<ResLogin>('/auth/login', req);
+    return res.data;
   },
 
   register: async (req: ReqRegister) => {

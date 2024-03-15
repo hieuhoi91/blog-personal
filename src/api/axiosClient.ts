@@ -1,8 +1,7 @@
 import axios, { AxiosHeaders } from 'axios';
-import { getServerSession } from 'next-auth';
+import { getSession } from 'next-auth/react';
 
 import { BASE_URL_API } from '@/constant';
-
 const axiosClient = axios.create({
   baseURL: BASE_URL_API,
   headers: {
@@ -12,13 +11,14 @@ const axiosClient = axios.create({
 
 axiosClient.interceptors.request.use(
   async (request) => {
-    const session = await getServerSession();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const session: any = await getSession();
 
     if (session) {
-      // (request.headers as AxiosHeaders).set(
-      //   'Authorization',
-      //   `Bearer ${session?.token.user.accessToken}`
-      // );
+      (request.headers as AxiosHeaders).set(
+        'Authorization',
+        `Bearer ${session?.token.user.accessToken}`
+      );
     } else if (axios.defaults.headers.common.Authorization && request.headers) {
       (request.headers as AxiosHeaders).set(
         'Authorization',

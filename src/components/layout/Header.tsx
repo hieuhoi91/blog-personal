@@ -70,7 +70,7 @@ export const menu = [
 ];
 
 const Header = () => {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const { theme } = useTheme();
   const session = useSession();
 
@@ -136,7 +136,7 @@ const Header = () => {
 
         <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
           {isLogin ? (
-            <Login handleToggle={handleToggleAuth} />
+            <Login onClose={onClose} handleToggle={handleToggleAuth} />
           ) : (
             <Register handleToggle={handleToggleAuth} />
           )}

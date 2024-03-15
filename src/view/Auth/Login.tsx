@@ -18,6 +18,7 @@ import { ReqLogin } from '@/shared/type';
 
 interface PropsLogin {
   handleToggle: () => void;
+  onClose: () => void;
 }
 
 const Login = (props: PropsLogin) => {
@@ -36,14 +37,17 @@ const Login = (props: PropsLogin) => {
       };
       const res = await signIn('credentials', { ...reqLogin, redirect: false });
 
+      if (res?.ok) {
+        setIsLoading(false);
+        props.onClose();
+      }
+
       if (res?.error) {
         setIsLoading(true);
         setError(res.error);
-        setTimeout(() => setIsLoading(false), 1000);
-      }
-
-      if (res?.ok) {
-        setIsLoading(false);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 1000);
       }
     },
 
@@ -57,7 +61,7 @@ const Login = (props: PropsLogin) => {
 
   return (
     <ModalContent>
-      {(onClose) => (
+      {() => (
         <form onSubmit={formik.handleSubmit}>
           <ModalHeader className='!px-8 !py-4'>Login in here!</ModalHeader>
           <ModalBody>
@@ -104,9 +108,10 @@ const Login = (props: PropsLogin) => {
                 {formik.errors.password}
               </div>
             ) : null}
+
+            {error && <span className='text-sm text-red-600'>{error}</span>}
           </ModalBody>
           <ModalFooter className='flex items-center justify-between'>
-            {error && <span className='text-sm text-red-600'>{error}</span>}
             <Button
               onClick={props.handleToggle}
               disableAnimation
@@ -121,7 +126,7 @@ const Login = (props: PropsLogin) => {
               variant='light'
               type='submit'
               //BUG close modal
-              onPress={onClose}
+              // onPress={onClose}
             >
               {!isLoading ? 'Login' : <Spinner size='sm' />}
             </Button>

@@ -13,24 +13,15 @@ export const authOptions: NextAuthOptions = {
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        try {
-          const data: ResLogin = await BlogApi.login({
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            email: credentials!.email,
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            password: credentials!.password,
-          }).then((res) => res.data);
+        const data: ResLogin = await BlogApi.login({
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          email: credentials!.email,
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          password: credentials!.password,
+        });
 
-          if (data) {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            return data as any;
-          }
-          return null;
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        } catch (e: any) {
-          // eslint-disable-next-line no-console
-          console.log(e);
-        }
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        return data as any;
       },
     }),
   ],
