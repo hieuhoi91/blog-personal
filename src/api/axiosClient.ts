@@ -1,9 +1,10 @@
 import axios, { AxiosHeaders } from 'axios';
 import { getSession } from 'next-auth/react';
 
-import { BASE_URL_API } from '@/constant';
+import { BASE_URL } from '@/constant';
+
 const axiosClient = axios.create({
-  baseURL: BASE_URL_API,
+  baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },

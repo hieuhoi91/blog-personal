@@ -1,6 +1,6 @@
 export const ERROR_TOKEN = 'RefreshAccessTokenError';
 
-export const BASE_URL_API = `${process.env.BASE_URL_API}`;
+export const BASE_URL = `${process.env.NEXT_PUBLIC_BASE_URL_API}`;
 
 export const ROUTES = {
   HOME: '/',
