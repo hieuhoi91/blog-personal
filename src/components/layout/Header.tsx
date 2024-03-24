@@ -3,6 +3,10 @@
 import {
   Avatar,
   Button,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
   Modal,
   Navbar,
   NavbarBrand,
@@ -11,7 +15,7 @@ import {
   useDisclosure,
 } from '@nextui-org/react';
 import Link from 'next/link';
-import { useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import { useTheme } from 'next-themes';
 import React, { useState } from 'react';
 import {
@@ -26,6 +30,7 @@ import {
 import Search from '@/components/common/Search';
 import NextImage from '@/components/NextImage';
 
+import { ROUTES } from '@/constant';
 import Login from '@/view/Auth/Login';
 import Register from '@/view/Auth/Register';
 
@@ -122,7 +127,37 @@ const Header = () => {
           ))}
         </div>
         {status === 'authenticated' ? (
-          <Avatar name='' src='/' size='sm' />
+          <Dropdown placement='bottom-end'>
+            <DropdownTrigger>
+              <Avatar
+                size='sm'
+                as='button'
+                className='transition-transform'
+                src='https://i.pravatar.cc/150?u=a042581f4e29026704d'
+              />
+            </DropdownTrigger>
+            <DropdownMenu aria-label='Profile Actions' variant='flat'>
+              <DropdownItem key='admin'>
+                <Link href={ROUTES.ADMIN}>
+                  <button className='w-full text-left'>Manager Admin</button>
+                </Link>
+              </DropdownItem>
+              <DropdownItem key='settings'>My Settings</DropdownItem>
+              <DropdownItem key='team_settings'>Team Settings</DropdownItem>
+              <DropdownItem key='system'>System</DropdownItem>
+              <DropdownItem key='configurations'>Configurations</DropdownItem>
+              <DropdownItem key='help_and_feedback'>
+                Help & Feedback
+              </DropdownItem>
+              <DropdownItem
+                key='logout'
+                color='danger'
+                onClick={() => signOut()}
+              >
+                Log Out
+              </DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
         ) : (
           <Button
             onPress={onOpen}

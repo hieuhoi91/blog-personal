@@ -8,6 +8,8 @@ import { MdDarkMode, MdLightMode } from 'react-icons/md';
 import Footer from '@/components/layout/Footer';
 import Header from '@/components/layout/Header';
 
+import { ROUTES } from '@/constant';
+
 interface LayoutProps {
   children: React.ReactNode;
 }
@@ -37,7 +39,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <div className='relative'>
       <Header />
-      {pathname === '/' ? (
+      {pathname === `${ROUTES.HOME}` || `${ROUTES.ADMIN}` ? (
         ''
       ) : (
         <div className='mb-16 flex h-40 w-full flex-col items-center justify-center bg-[#f1f8ff] dark:bg-[#202b3b]'>
@@ -61,7 +63,7 @@ const Layout = ({ children }: LayoutProps) => {
       <div className='flex w-full flex-col items-center justify-center'>
         <div className='w-full max-w-[1200px]'>
           {children}
-          <Footer />
+          {pathname === `${ROUTES.ADMIN}` ? '' : <Footer />}
         </div>
       </div>
     </div>

@@ -1,3 +1,3 @@
-import Cart from '@/view/Cart';
+import { Cart } from '@/view';
 
 export default Cart;

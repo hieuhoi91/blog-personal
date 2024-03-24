@@ -1,3 +1,3 @@
-import Blogs from '@/view/Blogs';
+import { Blogs } from '@/view';
 
 export default Blogs;
