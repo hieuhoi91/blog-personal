@@ -127,7 +127,7 @@ const Header = () => {
           ))}
         </div>
         {status === 'authenticated' ? (
-          <Dropdown placement='bottom-end'>
+          <Dropdown placement='bottom-start'>
             <DropdownTrigger>
               <Avatar
                 size='sm'

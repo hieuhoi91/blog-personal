@@ -1,5 +1,12 @@
 import axiosClient from '@/api/axiosClient';
-import { ReqLogin, ReqRegister, ResLogin, ResRegister } from '@/shared/type';
+import {
+  ReqLogin,
+  ReqRegister,
+  ReqUploadFiles,
+  ResLogin,
+  ResRegister,
+  ResUploadFiles,
+} from '@/shared/type';
 
 export const BlogApi = {
   login: async (req: ReqLogin) => {
@@ -9,5 +16,18 @@ export const BlogApi = {
 
   register: async (req: ReqRegister) => {
     return await axiosClient.post<ResRegister>('/auth/register', req);
+  },
+
+  uploadFiles: async (props: ReqUploadFiles) => {
+    const formData = new FormData();
+    props.files.forEach((file) => {
+      formData.append('files', file);
+    });
+
+    return await axiosClient.post<ResUploadFiles>('/upload', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
   },
 };

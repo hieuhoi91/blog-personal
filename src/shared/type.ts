@@ -44,3 +44,11 @@ export interface ISession {
   username: string;
   token: Token;
 }
+
+export interface ResUploadFiles {
+  urls: string[];
+}
+
+export interface ReqUploadFiles {
+  files: File[];
+}
