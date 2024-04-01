@@ -1,37 +1,19 @@
 'use client';
 
-import { BlockNoteView, useCreateBlockNote } from '@blocknote/react';
+import { Button } from '@nextui-org/react';
+import Link from 'next/link';
+import React from 'react';
 
-import '@blocknote/core/fonts/inter.css';
-import '@blocknote/react/style.css';
+import { ROUTES } from '@/constant';
 
-import { BlogApi } from '@/api/blog-api';
+const Admin = () => {
+  return (
+    <div className='mt-8'>
+      <Button>
+        <Link href={ROUTES.ADMIN_BLOG}>Blog</Link>
+      </Button>
+    </div>
+  );
+};
 
-// Uploads a file to tmpfiles.org and returns the URL to the uploaded file.
-async function uploadFile(file: File) {
-  try {
-    const files = await BlogApi.uploadFiles({
-      files: [file],
-    });
-
-    return files.data.urls[0];
-  } catch (error: any) {
-    return error.message;
-  }
-}
-
-export default function Editor() {
-  // Creates a new editor instance.
-  const editor = useCreateBlockNote({
-    initialContent: [
-      {
-        type: 'paragraph',
-        content: 'Hãy bắt đầu bài viết của bạn.',
-      },
-    ],
-    uploadFile,
-  });
-
-  // Renders the editor instance using a React component.
-  return <BlockNoteView editor={editor} />;
-}
+export default Admin;

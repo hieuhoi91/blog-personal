@@ -52,3 +52,9 @@ export interface ResUploadFiles {
 export interface ReqUploadFiles {
   files: File[];
 }
+
+export interface ResCategories {
+  id: string;
+  name: string;
+  slug: string;
+}

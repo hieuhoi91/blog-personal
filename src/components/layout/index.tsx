@@ -37,7 +37,7 @@ const Layout = ({ children }: LayoutProps) => {
     slug[slug.length - 1].slice(1);
 
   return (
-    <div className='relative'>
+    <div className='relative flex flex-col gap-8'>
       <Header />
       {pathname === `${ROUTES.HOME}` || `${ROUTES.ADMIN}` ? (
         ''
@@ -63,7 +63,7 @@ const Layout = ({ children }: LayoutProps) => {
       <div className='flex w-full flex-col items-center justify-center'>
         <div className='w-full max-w-[1200px]'>
           {children}
-          {pathname === `${ROUTES.ADMIN}` ? '' : <Footer />}
+          {pathname.match(ROUTES.ADMIN) ? '' : <Footer />}
         </div>
       </div>
     </div>

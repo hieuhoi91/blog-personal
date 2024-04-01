@@ -3,6 +3,7 @@ import {
   ReqLogin,
   ReqRegister,
   ReqUploadFiles,
+  ResCategories,
   ResLogin,
   ResRegister,
   ResUploadFiles,
@@ -30,4 +31,12 @@ export const BlogApi = {
       },
     });
   },
+
+  getAllCategory: async () => {
+    return await axiosClient.get<ResCategories[]>('/categories');
+  },
+
+  // createPost: async (req) => {
+  //   return await
+  // }
 };
