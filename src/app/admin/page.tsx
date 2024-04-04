@@ -2,34 +2,31 @@
 
 import { Button } from '@nextui-org/react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useSession } from 'next-auth/react';
 import React from 'react';
+
+import withAuth from '@/components/withAuth';
 
 import { ROUTES } from '@/constant';
 
 const Admin = () => {
-  const router = useRouter();
-  const { data } = useSession({
-    required: true,
-    onUnauthenticated() {
-      router.push('/api/auth/signin');
-    },
-  });
+  // const router = useRouter();
+  // const { data } = useSession({
+  //   required: true,
+  //   onUnauthenticated() {
+  //     router.push('/');
+  //   },
+  // });
 
-  const user = data?.user;
+  // const user = data?.user;
+  // console.log(data);
 
   return (
     <div className='mt-8'>
-      {!user ? (
-        <p>Loading ...</p>
-      ) : (
-        <Button>
-          <Link href={ROUTES.ADMIN_BLOG}>Blog</Link>
-        </Button>
-      )}
+      <Button>
+        <Link href={ROUTES.ADMIN_BLOG}>Blog</Link>
+      </Button>
     </div>
   );
 };
 
-export default Admin;
+export default withAuth(Admin);

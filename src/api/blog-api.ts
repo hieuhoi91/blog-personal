@@ -1,10 +1,14 @@
+import { JWT } from 'next-auth/jwt';
+
 import axiosClient from '@/api/axiosClient';
 import {
+  CreateCategory,
   ReqLogin,
   ReqRegister,
   ReqUploadFiles,
   ResCategories,
   ResLogin,
+  ResRefreshToken,
   ResRegister,
   ResUploadFiles,
 } from '@/shared/type';
@@ -17,6 +21,13 @@ export const BlogApi = {
 
   register: async (req: ReqRegister) => {
     return await axiosClient.post<ResRegister>('/auth/register', req);
+  },
+
+  refresh_token: async (refreshToken: JWT) => {
+    return await axiosClient.post<ResRefreshToken>(
+      '/refresh-token',
+      refreshToken
+    );
   },
 
   uploadFiles: async (props: ReqUploadFiles) => {
@@ -36,7 +47,7 @@ export const BlogApi = {
     return await axiosClient.get<ResCategories[]>('/categories');
   },
 
-  // createPost: async (req) => {
-  //   return await
-  // }
+  createPost: async (req: CreateCategory) => {
+    return await axiosClient.post('/posts', req);
+  },
 };

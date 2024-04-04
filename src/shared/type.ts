@@ -45,6 +45,12 @@ export interface ISession {
   token: Token;
 }
 
+export interface ResRefreshToken {
+  accessToken: string;
+  refreshToken: string;
+  expiresIn: string;
+}
+
 export interface ResUploadFiles {
   urls: string[];
 }
@@ -57,4 +63,11 @@ export interface ResCategories {
   id: string;
   name: string;
   slug: string;
+}
+
+export interface CreateCategory {
+  category_id: string;
+  title: string;
+  thumbnail_url: string;
+  description: string;
 }
