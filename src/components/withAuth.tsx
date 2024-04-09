@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation';
-import { signOut, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import React, { useEffect } from 'react';
 
 const withAuth = (Component: any) => {
@@ -8,7 +8,6 @@ const withAuth = (Component: any) => {
 
     useEffect(() => {
       if (status === 'unauthenticated') {
-        signOut();
         redirect('/');
       }
     }, [status]);

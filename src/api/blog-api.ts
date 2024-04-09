@@ -1,12 +1,12 @@
 import { JWT } from 'next-auth/jwt';
 
 import axiosClient from '@/api/axiosClient';
+import { CreateCategory, ResCategories } from '@/shared/category.type';
+import { ResPostById, ResPostsByCategory } from '@/shared/posts.type';
 import {
-  CreateCategory,
   ReqLogin,
   ReqRegister,
   ReqUploadFiles,
-  ResCategories,
   ResLogin,
   ResRefreshToken,
   ResRegister,
@@ -45,6 +45,16 @@ export const BlogApi = {
 
   getAllCategory: async () => {
     return await axiosClient.get<ResCategories[]>('/categories');
+  },
+
+  getPostById: async (id: string) => {
+    return await axiosClient.get<ResPostById>(`/posts/${id}`);
+  },
+
+  getAllPostsByCategory: async (id: string) => {
+    return await axiosClient.get<ResPostsByCategory[]>(
+      `/posts/findbycategory/${id}`
+    );
   },
 
   createPost: async (req: CreateCategory) => {

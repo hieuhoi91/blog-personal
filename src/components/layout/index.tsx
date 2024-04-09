@@ -29,7 +29,6 @@ const Layout = ({ children }: LayoutProps) => {
   };
 
   const pathname = usePathname();
-
   const slug = pathname.split('/');
 
   const name =
@@ -37,9 +36,9 @@ const Layout = ({ children }: LayoutProps) => {
     slug[slug.length - 1].slice(1);
 
   return (
-    <div className='relative flex flex-col gap-8'>
+    <div className='relative'>
       <Header />
-      {pathname === `${ROUTES.HOME}` || `${ROUTES.ADMIN}` ? (
+      {pathname === `${ROUTES.HOME}` && `${ROUTES.ADMIN}` ? (
         ''
       ) : (
         <div className='mb-16 flex h-40 w-full flex-col items-center justify-center bg-[#f1f8ff] dark:bg-[#202b3b]'>

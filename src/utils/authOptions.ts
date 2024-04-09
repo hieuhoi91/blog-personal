@@ -49,22 +49,15 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
 
-  session: {
-    // Đặt thời gian mặc định cho session (ở đây là 1h)
-    maxAge: 2 * 60 * 60,
-    // Cấu hình đánh dấu session là có thể được làm mới tự động
-    // Khi session sắp hết hạn, NextAuth sẽ tự động làm mới session mà không cần đăng nhập lại
-    strategy: 'jwt',
-    updateAge: 24 * 60 * 60, // 24 hours
-  },
-
   callbacks: {
     async jwt({ token, user }: any) {
       // Initial sign in
       if (user) {
         const currentDate = new Date();
         token.user = user;
-        token.expiresIn = currentDate.setTime(currentDate.getTime() + 60 * 60);
+        token.expiresIn = currentDate.setTime(
+          currentDate.getTime() + 60 * 60 * 1000
+        );
         return token;
       }
 

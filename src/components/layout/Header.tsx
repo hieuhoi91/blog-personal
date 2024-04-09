@@ -15,6 +15,7 @@ import {
   useDisclosure,
 } from '@nextui-org/react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { signOut, useSession } from 'next-auth/react';
 import { useTheme } from 'next-themes';
 import React, { useState } from 'react';
@@ -68,9 +69,9 @@ export const social: Social[] = [
 
 export const menu = [
   { name: 'Home', href: '/' },
-  { name: 'Lifestyle', href: '/blogs/lifestyle' },
-  { name: 'Culture', href: '/blogs/culture' },
-  { name: 'Features', href: '/blogs/features' },
+  { name: 'Lifestyle', href: '/blogs/category/life' },
+  { name: 'Culture', href: '/blogs/category/culture' },
+  { name: 'Features', href: '/blogs/category/features' },
   { name: 'Shop', href: '/shop' },
 ];
 
@@ -78,6 +79,7 @@ const Header = () => {
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const { theme } = useTheme();
   const session = useSession();
+  const pathname = usePathname();
 
   const { status } = session;
 
@@ -111,7 +113,7 @@ const Header = () => {
         justify='center'
       >
         {menu.map((item) => (
-          <NavbarItem key={item.name}>
+          <NavbarItem isActive={item.href === pathname} key={item.name}>
             <Link color='foreground' href={item.href} className='text-[14px]'>
               {item.name}
             </Link>

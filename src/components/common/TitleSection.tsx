@@ -1,7 +1,5 @@
 import { FC } from 'react';
 
-import NextImage from '@/components/NextImage';
-
 interface TitleProps {
   title: string;
   widget?: boolean;
@@ -15,13 +13,13 @@ const TitleSection: FC<TitleProps> = (props) => {
       } text-text-primary flex flex-col gap-4 dark:text-white`}
     >
       <h3 className='text-xl font-bold'>{props.title}</h3>
-      <NextImage
+      {/* <NextImage
         width={33}
         height={4}
         alt=''
         src='svg/nga.svg'
         className='mb-6'
-      />
+      /> */}
     </div>
   );
 };

@@ -3,9 +3,36 @@ import React, { FC } from 'react';
 
 interface InfoProps {
   avatar?: boolean;
+  name: string;
+  slug?: string;
+  date: string;
 }
 
 const Info: FC<InfoProps> = (props) => {
+  const date = new Date(props.date);
+
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+
+  const monthIndex = date.getMonth();
+  const monthName = months[monthIndex];
+  const day = date.getDate();
+  const year = date.getFullYear();
+
+  const formattedDate = `${monthName} ${day}, ${year}`;
+
   return (
     <div className='flex gap-4'>
       {props.avatar && (
@@ -21,10 +48,12 @@ const Info: FC<InfoProps> = (props) => {
         } text-text-secondary flex items-center`}
       >
         <span className='hover:text-hover-text cursor-pointer transition-all'>
-          Katen Doe
+          {props.name}
         </span>
+        {props.slug && <span className='text-hover-text px-4'>•</span>}
+        {props.slug}
         <span className='text-hover-text px-4'>•</span>
-        August 19, 2022
+        {formattedDate}
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ import FrameSection from '@/components/common/FrameSection';
 import UploadImage from '@/components/common/UploadImage';
 
 import { BlogApi } from '@/api/blog-api';
-import { ResCategories } from '@/shared/type';
+import { ResCategories } from '@/shared/category.type';
 
 const Editor = dynamic(() => import('./Editor'), {
   ssr: false,

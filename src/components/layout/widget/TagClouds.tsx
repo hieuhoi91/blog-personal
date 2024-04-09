@@ -4,7 +4,7 @@ import React from 'react';
 import FrameSection from '@/components/common/FrameSection';
 import TitleSection from '@/components/common/TitleSection';
 
-const tag = [
+export const tag = [
   'Audio',
   'Content',
   'Featured',
