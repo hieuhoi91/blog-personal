@@ -3,13 +3,13 @@ import React, { FC } from 'react';
 
 interface InfoProps {
   avatar?: boolean;
-  name: string;
+  name?: string;
   slug?: string;
-  date: string;
+  date?: string;
 }
 
 const Info: FC<InfoProps> = (props) => {
-  const date = new Date(props.date);
+  const date = new Date(props.date || 123);
 
   const months = [
     'January',
