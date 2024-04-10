@@ -1,3 +1,5 @@
+import withAuth from '@/components/withAuth';
+
 import AdminBlog from '@/view/Admin/Blog';
 
-export default AdminBlog;
+export default withAuth(AdminBlog);

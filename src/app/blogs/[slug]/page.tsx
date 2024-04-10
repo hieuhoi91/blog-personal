@@ -15,7 +15,7 @@ import { tag } from '@/components/layout/widget/TagClouds';
 import { BlogApi } from '@/api/blog-api';
 import { ResPostById } from '@/shared/posts.type';
 
-const Blogs = () => {
+const Post = () => {
   const [blogData, setBlogData] = useState<ResPostById>();
   const pathname = usePathname();
   const url = pathname.split('/');
@@ -119,4 +119,4 @@ const Blogs = () => {
   );
 };
 
-export default Blogs;
+export default Post;

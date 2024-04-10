@@ -14,7 +14,7 @@ import NextImage from '@/components/NextImage';
 import { BlogApi } from '@/api/blog-api';
 import { ResPostsByCategory } from '@/shared/posts.type';
 
-const Blogs = () => {
+const ListPosts = () => {
   const [blogs, setBlogs] = useState<ResPostsByCategory[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
@@ -155,4 +155,4 @@ const Blogs = () => {
   );
 };
 
-export default Blogs;
+export default ListPosts;
