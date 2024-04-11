@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
+import { useSocket } from '@/hooks/useSocket';
+
 import FrameSection from '@/components/common/FrameSection';
 import TitleSection from '@/components/common/TitleSection';
 import { social } from '@/components/layout/Header';
@@ -13,20 +15,34 @@ import Widget from '@/components/layout/widget';
 import { tag } from '@/components/layout/widget/TagClouds';
 
 import { BlogApi } from '@/api/blog-api';
-import { ResPostById } from '@/shared/posts.type';
+import { ResPostBySlug } from '@/shared/posts.type';
 
 const Post = () => {
-  const [blogData, setBlogData] = useState<ResPostById>();
+  const [blogData, setBlogData] = useState<ResPostBySlug>();
   const pathname = usePathname();
   const url = pathname.split('/');
   const slug = url[url.length - 1];
 
   const editor = useCreateBlockNote();
 
+  const [messages, setMessages] = useState([]);
+  const [message, setMessage] = useState('');
+  const { sendMessage, onMessage } = useSocket(blogData?.id);
+
+  useEffect(() => {
+    onMessage((message: never) => {
+      setMessages((prevMessages) => [...prevMessages, message]);
+    });
+  }, [onMessage]);
+
+  const handleSend = () => {
+    sendMessage(message);
+  };
+
   useEffect(() => {
     const handlePost = async (slug: string) => {
       try {
-        const res = await BlogApi.getPostById(slug);
+        const res = await BlogApi.getPostBySlug(slug);
         const blocks = await editor.tryParseHTMLToBlocks(res.data.description);
         editor.replaceBlocks(editor.document, blocks);
         setBlogData(res.data);
@@ -99,16 +115,20 @@ const Post = () => {
         <div className='flex flex-col gap-4'>
           <TitleSection title='Comments (0)' />
           <FrameSection className='flex flex-col justify-center gap-6'>
-            <span className='text-sm opacity-70'>No comment</span>
+            <span className='text-sm opacity-70'>{messages}</span>
           </FrameSection>
           <div>
             <span>Comment</span>
             <input
+              required
               placeholder='Viết comment'
-              // onChange={(e) => setTitle(e.target.value)}
+              onChange={(e) => setMessage(e.target.value)}
               type='text'
               className='w-full border-none placeholder:text-[#cfcfcf] focus:ring-0'
             />
+            <Button type='submit' onClick={handleSend}>
+              Gui
+            </Button>
           </div>
         </div>
       </div>

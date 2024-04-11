@@ -1,11 +1,12 @@
 import { NextAuthOptions } from 'next-auth';
-import { JWT } from 'next-auth/jwt';
 import Credentials from 'next-auth/providers/credentials';
 
 import { BlogApi } from '@/api/blog-api';
 import { ResLogin } from '@/shared/type';
 
-async function refreshAccessToken(refreshToken: JWT) {
+async function refreshAccessToken(refreshToken: any) {
+  // console.log('re', refreshToken.refreshToken.refreshToken); BUG
+
   try {
     const token = await BlogApi.refresh_token(refreshToken);
 
@@ -14,11 +15,11 @@ async function refreshAccessToken(refreshToken: JWT) {
     return {
       accessToken: data.accessToken,
       expiresIn: data.expiresIn,
-      refreshToken: data.refreshToken ?? refreshToken, // Fall back to old refresh token
+      refreshToken: data.refreshToken, // Fall back to old refresh token
     };
-  } catch (error) {
+  } catch (error: any) {
     // eslint-disable-next-line no-console
-    console.log(error);
+    console.log('error', error.data);
 
     return {
       refreshToken,

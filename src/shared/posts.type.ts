@@ -17,7 +17,7 @@ export interface User {
   avatar: null;
 }
 
-export interface ResPostById {
+export interface ResPostBySlug {
   id: string;
   title: string;
   slug: string;
