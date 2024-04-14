@@ -7,7 +7,6 @@ import {
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
-  Modal,
   Navbar,
   NavbarBrand,
   NavbarContent,
@@ -18,7 +17,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { signOut, useSession } from 'next-auth/react';
 import { useTheme } from 'next-themes';
-import React, { useState } from 'react';
+import React from 'react';
 import {
   BiLogoFacebook,
   BiLogoInstagram,
@@ -32,8 +31,7 @@ import Search from '@/components/common/Search';
 import NextImage from '@/components/NextImage';
 
 import { ROUTES } from '@/constant';
-import Login from '@/view/Auth/Login';
-import Register from '@/view/Auth/Register';
+import ModalAuth from '@/view/Auth/ModalAuth';
 
 interface Social {
   icon: React.ReactNode;
@@ -82,12 +80,6 @@ const Header = () => {
   const pathname = usePathname();
 
   const { status } = session;
-
-  const [isLogin, setIsLogin] = useState(true);
-
-  const handleToggleAuth = () => {
-    setIsLogin(!isLogin);
-  };
 
   return (
     <Navbar
@@ -171,13 +163,11 @@ const Header = () => {
           </Button>
         )}
 
-        <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
-          {isLogin ? (
-            <Login onClose={onClose} handleToggle={handleToggleAuth} />
-          ) : (
-            <Register handleToggle={handleToggleAuth} />
-          )}
-        </Modal>
+        <ModalAuth
+          isOpen={isOpen}
+          onOpenChange={onOpenChange}
+          onClose={onClose}
+        />
 
         <Search />
       </NavbarContent>

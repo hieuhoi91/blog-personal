@@ -2,6 +2,7 @@ import { JWT } from 'next-auth/jwt';
 
 import axiosClient from '@/api/axiosClient';
 import { CreateCategory, ResCategories } from '@/shared/category.type';
+import { ResComment } from '@/shared/comment.type';
 import { ResPostBySlug, ResPostsByCategory } from '@/shared/posts.type';
 import {
   ReqLogin,
@@ -59,5 +60,9 @@ export const BlogApi = {
 
   createPost: async (req: CreateCategory) => {
     return await axiosClient.post('/posts', req);
+  },
+
+  getCommentbyPostId: async (id: string) => {
+    return await axiosClient.get<ResComment[]>(`/comments/${id}`);
   },
 };

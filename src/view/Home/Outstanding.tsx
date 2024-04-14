@@ -28,9 +28,9 @@ const Outstanding = () => {
           </Button>
         </div>
         <div className='grid flex-1 grid-rows-4 flex-col justify-between gap-4 '>
-          {dataBlog.map((item) => (
+          {dataBlog.map((item, idx) => (
             <div
-              key={item.day}
+              key={idx}
               className='after:bg-border relative flex gap-4 pb-2 after:absolute after:bottom-0 after:h-[1px] after:w-full after:content-[""] last:pb-0 last:after:hidden'
             >
               <div className='h-[60px] cursor-pointer overflow-hidden rounded-full'>

@@ -1,12 +1,22 @@
 'use client';
 
 import { BlockNoteView, useCreateBlockNote } from '@blocknote/react';
-import { Avatar, Button, Card, CardBody, Divider } from '@nextui-org/react';
+import {
+  Avatar,
+  Button,
+  Card,
+  CardBody,
+  Divider,
+  useDisclosure,
+  User,
+} from '@nextui-org/react';
+import { format, parseISO } from 'date-fns';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import { useSession } from 'next-auth/react';
+import React, { useEffect, useRef, useState } from 'react';
 
-import { useSocket } from '@/hooks/useSocket';
+import { IComment, useSocket } from '@/hooks/useSocket';
 
 import FrameSection from '@/components/common/FrameSection';
 import TitleSection from '@/components/common/TitleSection';
@@ -15,28 +25,41 @@ import Widget from '@/components/layout/widget';
 import { tag } from '@/components/layout/widget/TagClouds';
 
 import { BlogApi } from '@/api/blog-api';
+import { ResComment } from '@/shared/comment.type';
 import { ResPostBySlug } from '@/shared/posts.type';
+import ModalAuth from '@/view/Auth/ModalAuth';
 
 const Post = () => {
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const [blogData, setBlogData] = useState<ResPostBySlug>();
+  const [commentsData, setCommentsData] = useState<ResComment[]>([]);
+  const [messages, setMessages] = useState<IComment[]>([]);
+  const { sendMessage, onMessage } = useSocket(blogData?.id);
   const pathname = usePathname();
+  const session = useSession();
   const url = pathname.split('/');
   const slug = url[url.length - 1];
 
+  const inputRefComment = useRef<HTMLInputElement | null>(null);
   const editor = useCreateBlockNote();
 
-  const [messages, setMessages] = useState([]);
-  const [message, setMessage] = useState('');
-  const { sendMessage, onMessage } = useSocket(blogData?.id);
+  const formatDateString = (isoString: string): string => {
+    const date = parseISO(isoString);
+
+    const formattedDate = format(date, "MMMM d, yyyy 'at' h:mm a");
+    return formattedDate;
+  };
 
   useEffect(() => {
-    onMessage((message: never) => {
+    onMessage((message: IComment) => {
       setMessages((prevMessages) => [...prevMessages, message]);
     });
   }, [onMessage]);
 
   const handleSend = () => {
-    sendMessage(message);
+    if (session.status === 'unauthenticated') onOpen();
+
+    if (inputRefComment.current) sendMessage(inputRefComment.current.value);
   };
 
   useEffect(() => {
@@ -46,6 +69,8 @@ const Post = () => {
         const blocks = await editor.tryParseHTMLToBlocks(res.data.description);
         editor.replaceBlocks(editor.document, blocks);
         setBlogData(res.data);
+        const data_comment = await BlogApi.getCommentbyPostId(res.data.id);
+        setCommentsData(data_comment.data);
       } catch (error) {
         // eslint-disable-next-line no-console
         console.log(error);
@@ -114,21 +139,64 @@ const Post = () => {
         </Card>
         <div className='flex flex-col gap-4'>
           <TitleSection title='Comments (0)' />
-          <FrameSection className='flex flex-col justify-center gap-6'>
-            <span className='text-sm opacity-70'>{messages}</span>
+          <FrameSection className='flex flex-col justify-center'>
+            {commentsData.length > 0 && messages.length > 0 ? (
+              <div>
+                <div>
+                  {commentsData.map((comment) => (
+                    <div
+                      key={comment.id}
+                      className='flex flex-col items-start gap-2'
+                    >
+                      <User
+                        name={comment.user.username}
+                        description={formatDateString(comment.createdAt)}
+                        avatarProps={{
+                          src: 'https://i.pravatar.cc/150?u=a04258114e29026702d',
+                        }}
+                      />
+                      <span>{comment.comment}</span>
+                    </div>
+                  ))}
+                </div>
+                <div>
+                  {messages.map((comment) => (
+                    <div
+                      key={comment.user_id}
+                      className='flex flex-col items-start gap-2'
+                    >
+                      <User
+                        name={comment.username}
+                        description={comment.createAt}
+                        avatarProps={{
+                          src: 'https://i.pravatar.cc/150?u=a04258114e29026702d',
+                        }}
+                      />
+                      <span>{comment.message}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div>Ko có comment nào!</div>
+            )}
           </FrameSection>
           <div>
             <span>Comment</span>
             <input
-              required
-              placeholder='Viết comment'
-              onChange={(e) => setMessage(e.target.value)}
+              ref={inputRefComment}
               type='text'
-              className='w-full border-none placeholder:text-[#cfcfcf] focus:ring-0'
+              className='w-full rounded-full border px-6 text-sm focus:ring-0 dark:text-black'
+              placeholder='Comment here'
             />
             <Button type='submit' onClick={handleSend}>
               Gui
             </Button>
+            <ModalAuth
+              isOpen={isOpen}
+              onOpenChange={onOpenChange}
+              onClose={onClose}
+            />
           </div>
         </div>
       </div>

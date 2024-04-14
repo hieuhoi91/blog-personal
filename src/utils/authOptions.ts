@@ -5,8 +5,6 @@ import { BlogApi } from '@/api/blog-api';
 import { ResLogin } from '@/shared/type';
 
 async function refreshAccessToken(refreshToken: any) {
-  // console.log('re', refreshToken.refreshToken.refreshToken); BUG
-
   try {
     const token = await BlogApi.refresh_token(refreshToken);
 
@@ -56,6 +54,7 @@ export const authOptions: NextAuthOptions = {
       if (user) {
         const currentDate = new Date();
         token.user = user;
+        token.refreshToken = user.token.refreshToken;
         token.expiresIn = currentDate.setTime(
           currentDate.getTime() + 60 * 60 * 1000
         );
@@ -66,7 +65,7 @@ export const authOptions: NextAuthOptions = {
         return token;
       }
 
-      return refreshAccessToken(token);
+      return refreshAccessToken(token.refreshToken);
     },
     async session({ session, token }) {
       if (token) {
