@@ -10,11 +10,36 @@ import {
   ModalHeader,
   useDisclosure,
 } from '@nextui-org/react';
-import React from 'react';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
 import { MdSearch } from 'react-icons/md';
+
+import useDebounce from '@/hooks/useDebounce';
+
+import { BlogApi } from '@/api/blog-api';
+import { ResPostsByCategory } from '@/shared/posts.type';
 
 const Search = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [searchTerm, setSearchTerm] = useState('');
+  const [dataSearch, setDataSearch] = useState<ResPostsByCategory[]>([]);
+  const debouncedSearchTerm = useDebounce(searchTerm, 500); // Debounce cho searchTerm với delay 500ms
+
+  useEffect(() => {
+    if (debouncedSearchTerm) {
+      const handleSearch = async () => {
+        try {
+          const res = await BlogApi.searchPost(searchTerm);
+          setDataSearch(res.data);
+        } catch (error) {
+          // eslint-disable-next-line no-console
+          console.log(error);
+        }
+      };
+
+      handleSearch();
+    }
+  }, [searchTerm, debouncedSearchTerm]); // Chỉ gọi lại khi debouncedSearchTerm thay đổi
 
   return (
     <div>
@@ -37,6 +62,7 @@ const Search = () => {
                   isClearable
                   radius='lg'
                   placeholder='Type to search...'
+                  onChange={(e) => setSearchTerm(e.target.value)}
                   classNames={{
                     input: [
                       'bg-transparent',
@@ -63,14 +89,29 @@ const Search = () => {
                   }
                 />
               </ModalBody>
+              <div className='flex flex-col gap-2 px-6 pt-2'>
+                {dataSearch.map((data) => (
+                  <div key={data.id}>
+                    <Button className='text-left' fullWidth onPress={onClose}>
+                      <Link
+                        className='w-full overflow-hidden text-ellipsis whitespace-nowrap'
+                        href={`/blogs/${data.slug}`}
+                      >
+                        {data.title}
+                      </Link>
+                    </Button>
+                  </div>
+                ))}
+              </div>
+
               <ModalFooter>
-                <Button
+                {/* <Button
                   className='bg-main text-white hover:border-transparent'
                   variant='light'
                   onPress={onClose}
                 >
                   Oke
-                </Button>
+                </Button> */}
               </ModalFooter>
             </>
           )}

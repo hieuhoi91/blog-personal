@@ -59,7 +59,11 @@ const Post = () => {
   const handleSend = () => {
     if (session.status === 'unauthenticated') onOpen();
 
-    if (inputRefComment.current) sendMessage(inputRefComment.current.value);
+    if (inputRefComment.current) {
+      sendMessage(inputRefComment.current.value);
+      inputRefComment.current.value = '';
+      inputRefComment.current.focus();
+    }
   };
 
   useEffect(() => {
@@ -140,7 +144,7 @@ const Post = () => {
         <div className='flex flex-col gap-4'>
           <TitleSection title='Comments (0)' />
           <FrameSection className='flex flex-col justify-center'>
-            {commentsData.length > 0 && messages.length > 0 ? (
+            {commentsData.length > 0 || messages.length > 0 ? (
               <div>
                 <div>
                   {commentsData.map((comment) => (
@@ -152,7 +156,7 @@ const Post = () => {
                         name={comment.user.username}
                         description={formatDateString(comment.createdAt)}
                         avatarProps={{
-                          src: 'https://i.pravatar.cc/150?u=a04258114e29026702d',
+                          src: `${comment.user.avatar}`,
                         }}
                       />
                       <span>{comment.comment}</span>
@@ -169,7 +173,7 @@ const Post = () => {
                         name={comment.username}
                         description={comment.createAt}
                         avatarProps={{
-                          src: 'https://i.pravatar.cc/150?u=a04258114e29026702d',
+                          src: `${comment.avatar}`,
                         }}
                       />
                       <span>{comment.message}</span>

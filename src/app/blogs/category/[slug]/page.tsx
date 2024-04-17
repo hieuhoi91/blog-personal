@@ -121,6 +121,7 @@ const ListPosts = () => {
                       <div className='col-span-3 flex flex-col gap-2'>
                         <Info
                           avatar={true}
+                          avatarUrl={item.user.avatar}
                           name={item.user.username}
                           date={item.createdAt}
                         />

@@ -14,7 +14,7 @@ export interface ResPostsByCategory {
 export interface User {
   id: string;
   username: string;
-  avatar: null;
+  avatar: string;
 }
 
 export interface ResPostBySlug {

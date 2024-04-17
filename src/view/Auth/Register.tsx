@@ -20,6 +20,16 @@ interface PropsRegister {
   handleToggle: () => void;
 }
 
+const avatars: string[] = [
+  'https://axiesreact.themesflat.co/static/media/avt-1.71a23be871d509a23d2d.jpg',
+  'https://axiesreact.themesflat.co/static/media/avt-2.e101dc63363945410d54.jpg',
+  'https://axiesreact.themesflat.co/static/media/avt-4.cbb2f9fb25c1e375d958.jpg',
+  'https://axiesreact.themesflat.co/static/media/avt-5.cb38feefc0ea48ef8f43.jpg',
+  'https://axiesreact.themesflat.co/static/media/avt-6.0f735e283e35e7c8f00c.jpg',
+  'https://axiesreact.themesflat.co/static/media/avt-9.87baf90907513c1c10e6.jpg',
+  'https://axiesreact.themesflat.co/static/media/avt-7.98fafb24331353eb43c0.jpg',
+];
+
 const Register = (props: PropsRegister) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string>('');
@@ -31,11 +41,18 @@ const Register = (props: PropsRegister) => {
       password: '',
     },
     onSubmit: async (values) => {
+      const randomAvatar = (arr: string[]) => {
+        const index = Math.floor(Math.random() * arr.length);
+        return arr[index];
+      };
+
       try {
         const reqRegister: ReqRegister = {
           username: values.username,
           email: values.email,
           password: values.password,
+          role: 'user',
+          avatar: randomAvatar(avatars),
         };
         setIsLoading(true);
         const _ = await BlogApi.register(reqRegister);

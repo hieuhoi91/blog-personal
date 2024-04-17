@@ -65,4 +65,8 @@ export const BlogApi = {
   getCommentbyPostId: async (id: string) => {
     return await axiosClient.get<ResComment[]>(`/comments/${id}`);
   },
+
+  searchPost: async (query: string) => {
+    return await axiosClient.get(`/posts?title=${query}`);
+  },
 };

@@ -3,9 +3,10 @@ import React, { FC } from 'react';
 
 interface InfoProps {
   avatar?: boolean;
-  name?: string;
+  avatarUrl: string;
+  name: string;
   slug?: string;
-  date?: string;
+  date: string;
 }
 
 const Info: FC<InfoProps> = (props) => {
@@ -35,12 +36,7 @@ const Info: FC<InfoProps> = (props) => {
 
   return (
     <div className='flex gap-4'>
-      {props.avatar && (
-        <Avatar
-          src='https://themeger.shop/wordpress/katen/wp-content/uploads/2022/08/nick-arnot-321267-unsplash-48x48.jpg'
-          size='sm'
-        />
-      )}
+      {props.avatar && <Avatar src={props.avatarUrl} size='sm' />}
 
       <div
         className={`${

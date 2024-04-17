@@ -67,7 +67,7 @@ export const social: Social[] = [
 
 export const menu = [
   { name: 'Home', href: '/' },
-  { name: 'Lifestyle', href: '/blogs/category/life' },
+  { name: 'Lifestyle', href: '/blogs/category/lifestyle' },
   { name: 'Culture', href: '/blogs/category/culture' },
   { name: 'Features', href: '/blogs/category/features' },
   { name: 'Shop', href: '/shop' },
@@ -76,10 +76,9 @@ export const menu = [
 const Header = () => {
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const { theme } = useTheme();
-  const session = useSession();
   const pathname = usePathname();
 
-  const { status } = session;
+  const { data: session, status }: any = useSession();
 
   return (
     <Navbar
@@ -127,11 +126,13 @@ const Header = () => {
                 size='sm'
                 as='button'
                 className='transition-transform'
-                src='https://i.pravatar.cc/150?u=a042581f4e29026704d'
+                src={session.avatar}
               />
             </DropdownTrigger>
             <DropdownMenu aria-label='Profile Actions' variant='flat'>
-              <DropdownItem key='admin'>
+              <DropdownItem
+                className={`${session.role === 'admin' && 'hidden'}`}
+              >
                 <Link href={ROUTES.ADMIN}>
                   <button className='w-full text-left'>Manager Admin</button>
                 </Link>
@@ -146,7 +147,9 @@ const Header = () => {
               <DropdownItem
                 key='logout'
                 color='danger'
-                onClick={() => signOut()}
+                onClick={() => {
+                  signOut();
+                }}
               >
                 Log Out
               </DropdownItem>

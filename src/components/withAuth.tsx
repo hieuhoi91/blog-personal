@@ -6,7 +6,7 @@ import React, { useEffect } from 'react';
 
 const withAuth = (Component: any) => {
   return function WithAuth(props: any) {
-    const { data, status } = useSession();
+    const { data, status }: any = useSession();
 
     useEffect(() => {
       if (status === 'unauthenticated') {
