@@ -3,10 +3,10 @@ import React, { FC } from 'react';
 
 interface InfoProps {
   avatar?: boolean;
-  avatarUrl: string;
-  name: string;
+  avatarUrl?: string;
+  name?: string;
   slug?: string;
-  date: string;
+  date?: string;
 }
 
 const Info: FC<InfoProps> = (props) => {
