@@ -131,7 +131,7 @@ const Header = () => {
             </DropdownTrigger>
             <DropdownMenu aria-label='Profile Actions' variant='flat'>
               <DropdownItem
-                className={`${session.role === 'admin' && 'hidden'}`}
+                className={`${session.role !== 'admin' && 'hidden'}`}
               >
                 <Link href={ROUTES.ADMIN}>
                   <button className='w-full text-left'>Manager Admin</button>
@@ -148,7 +148,7 @@ const Header = () => {
                 key='logout'
                 color='danger'
                 onClick={() => {
-                  signOut();
+                  signOut({ redirect: false });
                 }}
               >
                 Log Out
