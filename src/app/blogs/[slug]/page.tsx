@@ -14,7 +14,7 @@ import { format, parseISO } from 'date-fns';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useSession } from 'next-auth/react';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { KeyboardEvent, useEffect, useRef, useState } from 'react';
 
 import { IComment, useSocket } from '@/hooks/useSocket';
 
@@ -123,7 +123,7 @@ const Post = () => {
                 <Avatar
                   as='button'
                   className='h-24 w-24 transition-transform'
-                  src='https://i.pravatar.cc/150?u=a042581f4e29026704d'
+                  src={blogData?.user.avatar}
                 />
               </div>
               <div className='flex flex-col py-8'>
@@ -142,7 +142,7 @@ const Post = () => {
           </CardBody>
         </Card>
         <div className='flex flex-col gap-4'>
-          <TitleSection title='Comments (0)' />
+          <TitleSection title='Comments' />
           <FrameSection className='flex flex-col justify-center'>
             {commentsData.length > 0 || messages.length > 0 ? (
               <div>
@@ -192,8 +192,11 @@ const Post = () => {
               type='text'
               className='w-full rounded-full border px-6 text-sm focus:ring-0 dark:text-black'
               placeholder='Comment here'
+              onKeyDown={(e: KeyboardEvent) => {
+                if (e.key === 'Enter') handleSend();
+              }}
             />
-            <Button type='submit' onClick={handleSend}>
+            <Button type='submit' onClick={handleSend} className='mt-4'>
               Gui
             </Button>
             <ModalAuth

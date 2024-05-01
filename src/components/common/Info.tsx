@@ -38,17 +38,13 @@ const Info: FC<InfoProps> = (props) => {
     <div className='flex gap-4'>
       {props.avatar && <Avatar src={props.avatarUrl} size='sm' />}
 
-      <div
-        className={`${
-          props.avatar === false ? 'text-xs' : 'text-sm'
-        } text-text-secondary flex items-center`}
-      >
+      <div className=' text-text-secondary flex items-center text-sm'>
         <span className='hover:text-hover-text cursor-pointer transition-all'>
           {props.name}
         </span>
         {props.slug && <span className='text-hover-text px-4'>•</span>}
         {props.slug}
-        <span className='text-hover-text px-4'>•</span>
+        {props.name && <span className='text-hover-text px-4'>•</span>}
         {formattedDate}
       </div>
     </div>

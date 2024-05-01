@@ -33,7 +33,7 @@ const Layout = ({ children }: LayoutProps) => {
 
   const name =
     slug[slug.length - 1].charAt(0).toUpperCase() +
-    slug[slug.length - 1].slice(1);
+    slug[slug.length - 1].slice(1).replace(/-/g, ' ');
 
   return (
     <div className='relative'>

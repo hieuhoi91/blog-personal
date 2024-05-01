@@ -4,10 +4,9 @@ import Credentials from 'next-auth/providers/credentials';
 import { BlogApi } from '@/api/blog-api';
 import { ResLogin } from '@/shared/type';
 
-async function refreshAccessToken(refreshToken: any) {
+async function refreshAccessToken(refreshToken: string) {
   try {
     const token = await BlogApi.refresh_token(refreshToken);
-
     const data = token.data;
 
     return {
@@ -58,6 +57,7 @@ export const authOptions: NextAuthOptions = {
         token.expiresIn = currentDate.setTime(
           currentDate.getTime() + 60 * 60 * 1000
         );
+
         return token;
       }
 
@@ -65,7 +65,8 @@ export const authOptions: NextAuthOptions = {
         return token;
       }
 
-      return refreshAccessToken(token.refreshToken);
+      const a = refreshAccessToken(token.refreshToken);
+      return a;
     },
     async session({ session, token }) {
       if (token) {

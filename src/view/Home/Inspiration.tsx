@@ -20,7 +20,7 @@ const Inspiration = () => {
   }, []);
 
   return (
-    <div className='flex flex-col gap-4'>
+    <div className='flex flex-col gap-4 rounded-lg'>
       <div className='flex w-full items-center justify-between'>
         <TitleSection title='Inspiration' />
         <div className='flex gap-2'>

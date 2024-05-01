@@ -1,9 +1,12 @@
-import { JWT } from 'next-auth/jwt';
-
 import axiosClient from '@/api/axiosClient';
 import { CreateCategory, ResCategories } from '@/shared/category.type';
 import { ResComment } from '@/shared/comment.type';
-import { ResPostBySlug, ResPostsByCategory } from '@/shared/posts.type';
+import {
+  ReqSearchPost,
+  ResAllPost,
+  ResPostBySlug,
+  ResPostsByCategory,
+} from '@/shared/posts.type';
 import {
   ReqLogin,
   ReqRegister,
@@ -24,11 +27,10 @@ export const BlogApi = {
     return await axiosClient.post<ResRegister>('/auth/register', req);
   },
 
-  refresh_token: async (refreshToken: JWT) => {
-    return await axiosClient.post<ResRefreshToken>(
-      '/auth/refresh-token',
-      refreshToken
-    );
+  refresh_token: async (refreshToken: string) => {
+    return await axiosClient.post<ResRefreshToken>('/auth/refresh-token', {
+      refreshToken: refreshToken,
+    });
   },
 
   uploadFiles: async (props: ReqUploadFiles) => {
@@ -46,6 +48,12 @@ export const BlogApi = {
 
   getAllCategory: async () => {
     return await axiosClient.get<ResCategories[]>('/categories');
+  },
+
+  getAllPosts: async ({ sort, page, take, cates_slug }: ReqSearchPost) => {
+    return await axiosClient.get<ResAllPost>('/posts', {
+      params: { sort, page, take, cates_slug },
+    });
   },
 
   getPostBySlug: async (slug: string) => {

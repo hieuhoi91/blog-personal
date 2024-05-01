@@ -34,6 +34,7 @@ const ListPosts = () => {
 
         if (data) {
           const data_posts = await BlogApi.getAllPostsByCategory(data.id);
+
           setBlogs(data_posts.data);
           setIsLoading(true);
         } else {
@@ -89,12 +90,12 @@ const ListPosts = () => {
                 ))}
             </div>
           ) : (
-            <div>
+            <div className='flex flex-col gap-8'>
               {blogs.length !== 0
                 ? blogs.map((item) => (
                     <div
                       key={item.id}
-                      className='after:bg-border relative grid grid-cols-5 gap-8 pb-8 after:absolute after:bottom-0 after:h-[1px] after:w-full after:content-[""]'
+                      className='after:bg-border relative grid grid-cols-5 gap-8 pb-8 after:absolute after:bottom-0 after:h-[1px] after:w-full after:content-[""] last:pb-0 last:after:hidden'
                       onClick={() => router.push(`/blogs/${item.slug}`)}
                     >
                       <div className='col-span-2 h-full '>
@@ -128,10 +129,13 @@ const ListPosts = () => {
                         <h4 className='text-text-primary hover:text-hover-text dark:hover:text-hover-text cursor-pointer transition-all dark:text-white'>
                           {item.title}
                         </h4>
-                        <p className='text-text-secondary'>
-                          The European languages are members of the same family.
-                          Their separate existence is a myth.…
-                        </p>
+                        {/* <p className='text-text-secondary overflow-hidden text-ellipsis'>
+                          <BlockNoteView
+                            editor={editor}
+                            editable={false}
+                            className='overflow-hidden text-ellipsis'
+                          />
+                        </p> */}
                         <div className='flex flex-1 items-end justify-between'>
                           <span className='hover:text-hover-text cursor-pointer text-2xl transition-all'>
                             <IoShareSocialOutline />
@@ -146,7 +150,6 @@ const ListPosts = () => {
                 : 'Không có bài viết nào!'}
             </div>
           )}
-          <div className='flex justify-center'></div>
         </FrameSection>
       </div>
       <div className='col-span-1'>
