@@ -9,7 +9,7 @@ const nextConfig = {
 
   // Uncoment to add domain whitelist
   images: {
-    domains: ['res.cloudinary.com', 'themeger.shop'],
+    domains: ['res.cloudinary.com', 'themeger.shop', 'picsum.photos'],
   },
 
   webpack(config) {

@@ -44,7 +44,7 @@ const Login = (props: PropsLogin) => {
 
       if (res?.error) {
         setIsLoading(true);
-        setError(res.error);
+        setError('Tài khoản hoặc mật khẩu sai!');
         setTimeout(() => {
           setIsLoading(false);
         }, 1000);

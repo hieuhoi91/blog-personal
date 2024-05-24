@@ -1,16 +1,31 @@
-import { Button } from '@nextui-org/react';
+import { Button, useDisclosure } from '@nextui-org/react';
 import Image from 'next/image';
+import { useSession } from 'next-auth/react';
 import React, { useState } from 'react';
 import { MdOutlineAdd } from 'react-icons/md';
+import { toast } from 'react-toastify';
 
 import { IProduct } from '@/data/mock-data';
 
 import { useCartStore } from '@/store/useCartStore';
 
+import ModalAuth from '@/view/Auth/ModalAuth';
+
 const Product = ({ product }: { product: IProduct }) => {
   const [blur, setBlur] = useState(false);
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
+  const session = useSession();
 
   const addProduct = useCartStore((state) => state.addToCart);
+
+  const handleAddProduct = (product: IProduct) => {
+    if (session.status === 'unauthenticated') {
+      onOpen();
+    } else {
+      addProduct(product);
+      toast.success('Add product success!');
+    }
+  };
 
   return (
     <div
@@ -41,13 +56,18 @@ const Product = ({ product }: { product: IProduct }) => {
           radius='full'
           size='sm'
           color='warning'
-          onClick={() => addProduct(product)}
+          onClick={() => handleAddProduct(product)}
         >
           <MdOutlineAdd />
         </Button>
       ) : (
         ''
       )}
+      <ModalAuth
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        onClose={onClose}
+      />
     </div>
   );
 };

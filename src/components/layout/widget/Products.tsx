@@ -20,7 +20,7 @@ const Products = () => {
                 {item.name}
               </h6>
               <span className='text-text-secondary flex flex-1 justify-end text-sm font-light'>
-                ${item.price}
+                ${item.price}.00
               </span>
             </div>
             <Image src={item.thumnail} alt='' width={40} height={40} />

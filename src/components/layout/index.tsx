@@ -41,8 +41,8 @@ const Layout = ({ children }: LayoutProps) => {
       {pathname === `${ROUTES.HOME}` && `${ROUTES.ADMIN}` ? (
         ''
       ) : (
-        <div className='mb-16 flex h-40 w-full flex-col items-center justify-center bg-[#f1f8ff] dark:bg-[#202b3b]'>
-          <h2>{name}</h2>
+        <div className='mb-8 flex h-40 w-full flex-col items-center justify-center bg-[#f1f8ff] text-center dark:bg-[#202b3b]'>
+          <h2 className='max-w-[1200px]'>{name}</h2>
           <span className='text-text-secondary mt-2 text-sm font-light'>
             Katen / {name}
           </span>
@@ -60,7 +60,11 @@ const Layout = ({ children }: LayoutProps) => {
         </span>
       </button>
       <div className='flex w-full flex-col items-center justify-center'>
-        <div className='w-full max-w-[1200px]'>
+        <div
+          className={`${
+            pathname.includes('admin') ? 'max-w-[1600px]' : 'max-w-[1200px]'
+          } `}
+        >
           {children}
           {pathname.match(ROUTES.ADMIN) ? '' : <Footer />}
         </div>

@@ -19,7 +19,7 @@ let count = 2;
 const LatestPosts = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [totalPages, setTotalPages] = useState<number>();
+  const [totalPages, setTotalPages] = useState<number>(1);
 
   const getPosts = async ({ page, sort }: { page: number; sort: string }) => {
     try {
@@ -37,11 +37,13 @@ const LatestPosts = () => {
 
   useEffect(() => {
     getPosts({ sort: 'ASC', page: 1 });
+    count = 2;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleGetPost = (page: number) => {
     count = page + 1;
+
     getPosts({ sort: 'ASC', page: page });
   };
   return (
@@ -81,7 +83,7 @@ const LatestPosts = () => {
                 avatarUrl={item.user.avatar}
                 date={item.createdAt}
               />
-              <Link href={`/posts/${item.slug}`}>
+              <Link href={`/blogs/${item.slug}`}>
                 <h4 className='text-text-primary hover:text-hover-text dark:hover:text-hover-text cursor-pointer transition-all dark:text-white'>
                   {item.title}
                 </h4>
@@ -101,7 +103,9 @@ const LatestPosts = () => {
             </div>
           </div>
         ))}
-        {totalPages === count ? (
+        {totalPages < count ? (
+          ''
+        ) : (
           <div className='flex justify-center'>
             <Button
               radius='full'
@@ -113,8 +117,6 @@ const LatestPosts = () => {
               Load more
             </Button>
           </div>
-        ) : (
-          ''
         )}
       </FrameSection>
     </div>

@@ -146,7 +146,7 @@ const Post = () => {
           <FrameSection className='flex flex-col justify-center'>
             {commentsData.length > 0 || messages.length > 0 ? (
               <div>
-                <div>
+                <div className='flex flex-col gap-4'>
                   {commentsData.map((comment) => (
                     <div
                       key={comment.id}
@@ -163,7 +163,7 @@ const Post = () => {
                     </div>
                   ))}
                 </div>
-                <div>
+                <div className='flex flex-col gap-4'>
                   {messages.map((comment) => (
                     <div
                       key={comment.user_id}

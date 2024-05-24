@@ -16,6 +16,7 @@ import {
   ResRegister,
   ResUploadFiles,
 } from '@/shared/type';
+import { ReqSearchUser } from '@/shared/user.type';
 
 export const BlogApi = {
   login: async (req: ReqLogin) => {
@@ -31,6 +32,16 @@ export const BlogApi = {
     return await axiosClient.post<ResRefreshToken>('/auth/refresh-token', {
       refreshToken: refreshToken,
     });
+  },
+
+  getAllUsers: async ({ sort, page, take }: ReqSearchUser) => {
+    return await axiosClient.get('/users/all', {
+      params: { sort, page, take },
+    });
+  },
+
+  deleteUser: async (id: string) => {
+    return await axiosClient.delete(`/users/${id}`);
   },
 
   uploadFiles: async (props: ReqUploadFiles) => {
@@ -75,6 +86,10 @@ export const BlogApi = {
   },
 
   searchPost: async (query: string) => {
-    return await axiosClient.get(`/posts?title=${query}`);
+    return await axiosClient.get(`/posts/search?title=${query}`);
+  },
+
+  deletePost: async (id: string) => {
+    return await axiosClient.delete(`/posts/${id}`);
   },
 };

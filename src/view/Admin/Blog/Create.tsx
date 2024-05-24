@@ -3,6 +3,7 @@
 import { Button, Select, SelectItem } from '@nextui-org/react';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 import FrameSection from '@/components/common/FrameSection';
 import UploadImage from '@/components/common/UploadImage';
@@ -36,11 +37,8 @@ const AdminBlog = () => {
     try {
       const thumbnail = await BlogApi.uploadFiles({ files: images });
       blog.thumbnail_url = thumbnail.data.urls[0];
-      const _res = await BlogApi.createPost(blog);
-      setIdCategory('');
-      setTitle('');
-      setDescription('');
-      setImage([]);
+      const _ = await BlogApi.createPost(blog);
+      toast.success('Product create successfully');
     } catch (error) {
       // eslint-disable-next-line no-console
       console.log(error);
@@ -57,7 +55,7 @@ const AdminBlog = () => {
   }, []);
 
   return (
-    <div className='mt-8 flex flex-col gap-8'>
+    <div className='flex flex-col gap-8'>
       <FrameSection className='flex flex-col gap-6'>
         <div>
           <span>Chủ đề</span>

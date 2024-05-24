@@ -8,6 +8,7 @@ import Layout from '@/components/layout';
 
 import NextUIProviders from '@/app/providers/nextuiProviders';
 import NextAuthSessionProvider from '@/app/providers/sessionProvider';
+import ToastProvider from '@/app/providers/toastProvider';
 
 const poppins = Poppins({
   weight: ['200', '300', '400', '500', '600', '700', '800', '900'],
@@ -25,7 +26,9 @@ export default function RootLayout({
       <body suppressHydrationWarning={true}>
         <NextAuthSessionProvider>
           <NextUIProviders>
-            <Layout>{children}</Layout>
+            <ToastProvider>
+              <Layout>{children}</Layout>
+            </ToastProvider>
           </NextUIProviders>
         </NextAuthSessionProvider>
       </body>
