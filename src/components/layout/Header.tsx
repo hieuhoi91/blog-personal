@@ -7,17 +7,20 @@ import {
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
+  Listbox,
+  ListboxItem,
   Navbar,
   NavbarBrand,
   NavbarContent,
   NavbarItem,
+  Tooltip,
   useDisclosure,
 } from '@nextui-org/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { signOut, useSession } from 'next-auth/react';
 import { useTheme } from 'next-themes';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   BiLogoFacebook,
   BiLogoInstagram,
@@ -26,11 +29,14 @@ import {
   BiLogoTwitter,
   BiLogoYoutube,
 } from 'react-icons/bi';
+import { MdKeyboardArrowDown } from 'react-icons/md';
 
 import Search from '@/components/common/Search';
 import NextImage from '@/components/NextImage';
 
+import { BlogApi } from '@/api/blog-api';
 import { ROUTES } from '@/constant';
+import { ResCategories } from '@/shared/category.type';
 import ModalAuth from '@/view/Auth/ModalAuth';
 
 interface Social {
@@ -69,16 +75,29 @@ export const menu = [
   { name: 'Home', href: '/' },
   { name: 'Lifestyle', href: '/blogs/category/lifestyle' },
   { name: 'Culture', href: '/blogs/category/culture' },
-  { name: 'Features', href: '/blogs/category/features' },
-  { name: 'Shop', href: '/shop' },
 ];
 
 const Header = () => {
+  const [dataCate, setDataCate] = useState<ResCategories[]>([]);
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const { theme } = useTheme();
   const pathname = usePathname();
+  const valuesToRemove = ['lifestyle', 'culture'];
 
   const { data: session, status }: any = useSession();
+
+  const handleGetDateCategory = async () => {
+    const data = await BlogApi.getAllCategory();
+    const dataCate = data.data.filter(
+      (category) => !valuesToRemove.includes(category.slug)
+    );
+    setDataCate(dataCate);
+  };
+
+  useEffect(() => {
+    handleGetDateCategory();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Navbar
@@ -110,6 +129,30 @@ const Header = () => {
             </Link>
           </NavbarItem>
         ))}
+
+        <Tooltip
+          content={
+            <Listbox
+              className='w-full'
+              items={dataCate}
+              aria-label='Dynamic Actions'
+            >
+              {(item) => (
+                <ListboxItem key={item.id}>
+                  <Link href={`/blogs/category/${item.slug}`}>{item.name}</Link>
+                </ListboxItem>
+              )}
+            </Listbox>
+          }
+        >
+          <NavbarItem className='flex cursor-pointer items-center text-[14px]'>
+            <span>More</span> <MdKeyboardArrowDown size={20} />
+          </NavbarItem>
+        </Tooltip>
+
+        <Link color='foreground' href='/shop' className='text-[14px]'>
+          Shop
+        </Link>
       </NavbarContent>
       <NavbarContent className='flex !justify-end'>
         <div className='mr-12 flex items-center gap-4'>

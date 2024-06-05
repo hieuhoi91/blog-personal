@@ -76,6 +76,9 @@ export const BlogApi = {
       `/posts/findbycategory/${id}`
     );
   },
+  getPostRecommendById: async () => {
+    return await axiosClient.get('/posts/recommend');
+  },
 
   createPost: async (req: CreateCategory) => {
     return await axiosClient.post('/posts', req);

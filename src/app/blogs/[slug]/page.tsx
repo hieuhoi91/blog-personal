@@ -19,6 +19,7 @@ import React, { KeyboardEvent, useEffect, useRef, useState } from 'react';
 import { IComment, useSocket } from '@/hooks/useSocket';
 
 import FrameSection from '@/components/common/FrameSection';
+import Recommend from '@/components/common/Recommend';
 import TitleSection from '@/components/common/TitleSection';
 import { social } from '@/components/layout/Header';
 import Widget from '@/components/layout/widget';
@@ -197,7 +198,7 @@ const Post = () => {
               }}
             />
             <Button type='submit' onClick={handleSend} className='mt-4'>
-              Gui
+              Gửi
             </Button>
             <ModalAuth
               isOpen={isOpen}
@@ -206,6 +207,7 @@ const Post = () => {
             />
           </div>
         </div>
+        <Recommend />
       </div>
       <div className='col-span-1'>
         <Widget />
