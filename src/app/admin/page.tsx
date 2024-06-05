@@ -16,7 +16,7 @@ const Admin = () => {
   // const user = data?.user;
   // console.log(data);
 
-  return <div className='w-full gap-8'>a</div>;
+  return <div className='w-full gap-8'>Chúng tôi sẽ cập nhật sau</div>;
 };
 
 export default withAuth(Admin);

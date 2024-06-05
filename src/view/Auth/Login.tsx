@@ -66,7 +66,7 @@ const Login = (props: PropsLogin) => {
           <ModalHeader className='!px-8 !py-4'>Login in here!</ModalHeader>
           <ModalBody>
             <Input
-              label='Email'
+              label='Email example: admin@gmail.com'
               id='email'
               name='email'
               type='email'
@@ -87,7 +87,7 @@ const Login = (props: PropsLogin) => {
             ) : null}
 
             <Input
-              label='Password'
+              label='Password example: 123456'
               id='password'
               name='password'
               type='password'
